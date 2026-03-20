@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Chronicles — 暗号資産の歴史年表 2008–2024</title>
+<meta name="description" content="2008年のBitcoin誕生から2024年まで。暗号資産の歴史を技術・崩壊・バブル・規制・文化の5軸で徹底解説。">
+<meta property="og:title" content="Crypto Chronicles — 暗号資産の歴史年表">
+<meta property="og:description" content="2008–2024。誰もが振り返れる暗号資産の全史。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;
+  --surface:#111114;
+  --surface2:#18181d;
+  --border:#222228;
+  --border2:#2e2e38;
+  --text:#e8e6e0;
+  --muted:#7a7870;
+  --dim:#3a3a42;
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --tech:#7b6ef6;
+  --col:#e05252;
+  --bub:#e89a3c;
+  --reg:#4ea8de;
+  --cul:#52c78a;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Syne',sans-serif;
+  --jp:'Noto Sans JP',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--jp);line-height:1.7;min-height:100vh;overflow-x:hidden}
+
+/* grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(9,9,11,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 clamp(16px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.nav-logo{
+  font-family:var(--display);font-size:15px;font-weight:800;
+  letter-spacing:.04em;color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+.nav-right{display:flex;gap:6px;align-items:center}
+.share-btn{
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+  padding:5px 12px;border-radius:3px;
+  border:1px solid var(--border2);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.share-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ===== HERO ===== */
+.hero{
+  padding:80px clamp(16px,5vw,80px) 60px;
+  max-width:900px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+}
+.hero-title{
+  font-family:var(--display);font-size:clamp(36px,6vw,72px);
+  font-weight:800;line-height:1.05;letter-spacing:-.02em;
+  color:var(--text);margin-bottom:16px;
+}
+.hero-title em{font-style:normal;color:var(--gold)}
+.hero-sub{
+  font-size:clamp(14px,2vw,17px);color:var(--muted);
+  line-height:1.75;max-width:580px;margin-bottom:32px;
+}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat-num{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--text)}
+.stat-label{font-size:11px;color:var(--muted);letter-spacing:.05em}
+
+/* ===== CONTROLS ===== */
+.controls-wrap{
+  position:sticky;top:56px;z-index:90;
+  background:rgba(9,9,11,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:10px clamp(16px,4vw,48px);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:300px}
+.search-ico{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  font-size:13px;color:var(--dim);pointer-events:none;
+}
+.search-input{
+  width:100%;background:var(--surface2);
+  border:1px solid var(--border);border-radius:4px;
+  padding:7px 10px 7px 30px;
+  font-family:var(--mono);font-size:11px;color:var(--text);
+  outline:none;transition:border .15s;
+}
+.search-input:focus{border-color:var(--border2)}
+.search-input::placeholder{color:var(--dim)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.f-btn{
+  font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 11px;border-radius:99px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .12s;
+}
+.f-btn:hover{border-color:var(--border2);color:var(--text)}
+.f-btn.on-all{border-color:var(--border2);color:var(--text);background:var(--surface2)}
+.f-btn.on-技術{border-color:var(--tech);color:var(--tech);background:rgba(123,110,246,.1)}
+.f-btn.on-崩壊{border-color:var(--col);color:var(--col);background:rgba(224,82,82,.1)}
+.f-btn.on-バブル{border-color:var(--bub);color:var(--bub);background:rgba(232,154,60,.1)}
+.f-btn.on-規制{border-color:var(--reg);color:var(--reg);background:rgba(78,168,222,.1)}
+.f-btn.on-文化{border-color:var(--cul);color:var(--cul);background:rgba(82,199,138,.1)}
+.count-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:.06em;
+  padding:4px 9px;border-radius:99px;background:var(--surface2);
+  border:1px solid var(--border);color:var(--muted);margin-left:auto;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main{
+  display:grid;
+  grid-template-columns:clamp(80px,8vw,120px) 1fr;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 clamp(16px,4vw,48px) 100px;
+  position:relative;z-index:1;
+}
+/* vertical line */
+.main::before{
+  content:'';
+  position:absolute;
+  left:calc(clamp(16px,4vw,48px) + clamp(80px,8vw,120px) - 1px);
+  top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--border) 5%,var(--border) 95%,transparent);
+}
+
+/* ===== YEAR COLUMN ===== */
+.year-col{padding-top:32px}
+.year-anchor{
+  font-family:var(--mono);font-size:clamp(20px,2.5vw,28px);font-weight:500;
+  color:var(--dim);letter-spacing:-.02em;
+  padding-top:32px;padding-right:20px;
+  text-align:right;
+  position:sticky;top:110px;
+  transition:color .2s;
+}
+.year-anchor.active-year{color:var(--gold)}
+
+/* ===== EVENT COLUMN ===== */
+.events-col{padding:32px 0 0 clamp(16px,3vw,40px)}
+.era-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--gold);
+  padding:4px 10px;border:1px solid rgba(201,168,76,.25);
+  border-radius:99px;display:inline-block;margin-bottom:20px;
+  background:rgba(201,168,76,.06);
+}
+
+/* ===== EVENT CARD ===== */
+.event-card{
+  border:1px solid var(--border);border-radius:8px;
+  background:var(--surface);
+  margin-bottom:12px;overflow:hidden;
+  transition:border-color .15s;
+  cursor:pointer;
+}
+.event-card:hover{border-color:var(--border2)}
+.event-card.open{border-color:var(--border2)}
+
+.card-header{padding:16px 18px;display:flex;align-items:flex-start;gap:14px}
+.card-left{flex:1;min-width:0}
+.card-row1{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.cat-pip{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.cat-label-small{
+  font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
+}
+.event-title{font-size:14px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:5px}
+.event-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.imp-bar{display:flex;flex-direction:column;gap:2px}
+.imp-seg{width:3px;height:7px;border-radius:2px;background:var(--dim)}
+.imp-seg.lit{background:var(--text)}
+.chevron{font-size:12px;color:var(--dim);transition:transform .2s}
+.open .chevron{transform:rotate(180deg)}
+
+/* ===== DETAIL PANEL ===== */
+.card-detail{
+  display:none;
+  border-top:1px solid var(--border);
+  padding:20px 18px;
+  background:var(--surface2);
+}
+.open .card-detail{display:block}
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px 24px;margin-bottom:20px;
+}
+.d-block{}
+.d-label{
+  font-family:var(--mono);font-size:8px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:5px;
+}
+.d-val{font-size:12px;color:var(--muted);line-height:1.65}
+.d-val b{color:var(--text);font-weight:500}
+.people-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.person-tag{
+  font-family:var(--mono);font-size:9px;padding:3px 8px;
+  border-radius:3px;background:var(--bg);
+  border:1px solid var(--border);color:var(--muted);
+}
+
+/* RPG box */
+.rpg-panel{
+  border:1px solid rgba(123,110,246,.2);border-radius:6px;
+  padding:14px 16px;background:rgba(123,110,246,.04);
+}
+.rpg-head{
+  font-family:var(--mono);font-size:8px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--tech);margin-bottom:10px;
+}
+.rpg-chips{display:flex;flex-wrap:wrap;gap:5px}
+.rpg-chip{
+  font-family:var(--mono);font-size:9px;padding:3px 8px;
+  border-radius:3px;border:1px solid var(--border);
+  background:var(--bg);color:var(--muted);
+}
+.rpg-chip.e{border-color:rgba(224,82,82,.3);color:var(--col);background:rgba(224,82,82,.06)}
+.rpg-chip.j{border-color:rgba(123,110,246,.3);color:var(--tech);background:rgba(123,110,246,.06)}
+.rpg-chip.s{border-color:rgba(82,199,138,.3);color:var(--cul);background:rgba(82,199,138,.06)}
+.chip-prefix{opacity:.5;margin-right:3px}
+
+/* ===== YEAR BLOCK ===== */
+.year-block{display:contents}
+
+/* ===== EMPTY ===== */
+.empty-state{
+  padding:60px 0;text-align:center;
+  font-family:var(--mono);font-size:12px;color:var(--dim);
+  display:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  border-top:1px solid var(--border);
+  padding:32px clamp(16px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  position:relative;z-index:1;
+}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--dim)}
+.footer-note{font-size:11px;color:var(--dim)}
+
+/* ===== TOAST ===== */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:6px;padding:10px 20px;
+  font-family:var(--mono);font-size:11px;color:var(--text);
+  opacity:0;transition:all .25s;z-index:999;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:640px){
+  .main{grid-template-columns:56px 1fr}
+  .year-anchor{font-size:14px;padding-right:12px}
+  .hero-stats{gap:20px}
+}
+@media(max-width:480px){
+  .main{grid-template-columns:0 1fr}
+  .main::before{display:none}
+  .year-anchor{display:none}
+  .events-col{padding-left:0}
+  .era-label{margin-top:24px}
+}
+
+/* scroll fade-in */
+.event-card{
+  opacity:0;transform:translateY(12px);
+  transition:opacity .35s ease,transform .35s ease,border-color .15s;
+}
+.event-card.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><span class="nav-logo-dot"></span>Crypto Chronicles</a>
+  <div class="nav-right">
+    <a href="crypto-chronicles-timeline-en.html" class="share-btn" style="text-decoration:none">🇺🇸 English</a>
+    <button class="share-btn" onclick="copyLink()">🔗 URLをコピー</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">暗号資産の全史 · 2008–2024</div>
+  <h1 class="hero-title">The Crypto<br><em>Chronicles</em></h1>
+  <p class="hero-sub">Bitcoin誕生から今日まで。技術革新・崩壊・バブル・規制・文化の5軸で読み解く、暗号資産16年の完全年表。</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">40</span><span class="stat-label">主要イベント</span></div>
+    <div class="stat"><span class="stat-num">16</span><span class="stat-label">年間の歴史</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">カテゴリ</span></div>
+    <div class="stat"><span class="stat-num">$3T</span><span class="stat-label">ピーク時価総額</span></div>
+  </div>
+</header>
+
+<div class="controls-wrap" id="controls">
+  <div class="search-wrap">
+    <span class="search-ico">⌕</span>
+    <input class="search-input" id="search" placeholder="イベントを検索…" oninput="applyFilters()">
+  </div>
+  <div class="filters">
+    <button class="f-btn on-all" data-cat="all" onclick="setF('all',this)">ALL</button>
+    <button class="f-btn" data-cat="技術" onclick="setF('技術',this)">技術</button>
+    <button class="f-btn" data-cat="崩壊" onclick="setF('崩壊',this)">崩壊</button>
+    <button class="f-btn" data-cat="バブル" onclick="setF('バブル',this)">バブル</button>
+    <button class="f-btn" data-cat="規制" onclick="setF('規制',this)">規制</button>
+    <button class="f-btn" data-cat="文化" onclick="setF('文化',this)">文化</button>
+  </div>
+  <span class="count-badge" id="count-badge">40件</span>
+</div>
+
+<div class="main" id="main">
+  <div class="year-col" id="year-col"></div>
+  <div class="events-col" id="events-col"></div>
+</div>
+<div class="empty-state" id="empty">該当するイベントが見つかりません</div>
+
+<footer>
+  <span class="footer-copy">© 2024 Crypto Chronicles · 事実ベースの調査に基づく</span>
+  <span class="footer-note">教育・研究目的。投資助言ではありません。</span>
+</footer>
+<div class="toast" id="toast">リンクをコピーしました</div>
+
+<script>
+const CAT_COLOR={技術:'#7b6ef6',崩壊:'#e05252',バブル:'#e89a3c',規制:'#4ea8de',文化:'#52c78a'};
+const ERAS={2008:'創世期 Genesis',2009:'創世期 Genesis',2010:'黎明期 Dawn',2011:'黎明期 Dawn',2012:'黎明期 Dawn',2013:'台頭と崩壊 Rise & Fall',2014:'台頭と崩壊 Rise & Fall',2015:'技術深化 Deep Tech',2016:'技術深化 Deep Tech',2017:'狂乱と冬 Mania & Winter',2018:'狂乱と冬 Mania & Winter',2019:'DeFi革命 DeFi Revolution',2020:'DeFi革命 DeFi Revolution',2021:'絶頂期 Peak',2022:'大崩壊 Great Collapse',2023:'制度化 Institutionalization',2024:'制度化 Institutionalization'};
+
+const DB=[
+  {y:2008,cat:'技術',imp:5,name:'Bitcoin ホワイトペーパー公開',summary:'サトシ・ナカモトが中央管理者なしで価値を移転できるP2P電子通貨システムの論文を発表した。',bg:'リーマンショックによる金融システムへの不信感が高まる中、暗号技術者コミュニティの思想的蓄積が結実した。',result:'「ブロックチェーン」という概念が世界に誕生。10年後に数千兆円規模の産業を生む基盤が生まれた。',impact:'すべての暗号資産の思想的・技術的原点。分散台帳技術（DLT）という概念が各産業へ波及した。',lesson:'信頼の仲介者を排除する設計思想。「コードが法律になる」という革命的前提。',people:['サトシ・ナカモト（正体不明）','ハル・フィニー','ニック・スザボ（寄与説）'],rpg:{e:['中央集権の守護者','銀行システムの番人'],j:['暗号魔術師','分散主義の革命家'],s:['コンセンサス魔法','二重支払防止の盾']}},
+  {y:2008,cat:'崩壊',imp:4,name:'リーマンショック',summary:'リーマン・ブラザーズ破綻を契機に世界金融危機が勃発。伝統的金融システムへの不信が頂点に達した。',bg:'サブプライムローン問題・証券化商品の不透明さ・過剰レバレッジが積み重なった構造的崩壊。',result:'各国政府が公的資金で銀行を救済。ジェネシスブロックに「銀行救済」を揶揄する見出しが刻まれた。',impact:'Bitcoin誕生の直接の社会的文脈。「誰も救済しない、誰も救済されない」分散型金融への渇望を生んだ。',lesson:'中央集権的金融は内部腐敗に脆い。透明性のない金融工学は崩壊を加速させる。',people:['ハンク・ポールソン（米財務長官）','バーナンキ（FRB議長）','リチャード・ファルド（リーマンCEO）'],rpg:{e:['腐敗した金融帝国','見えない負債の魔物'],j:['救済者','システム破壊者'],s:['公的資金の盾','モラルハザードの呪い']}},
+  {y:2009,cat:'技術',imp:5,name:'Bitcoinネットワーク稼働開始',summary:'ジェネシスブロック採掘から10日後、ハル・フィニーへの10BTC送金で史上初の取引が成立した。',bg:'ホワイトペーパー公開後、サトシとハル・フィニーら少数の暗号技術者がテストと改良を重ねた。',result:'デジタル通貨が初めてP2Pネットワーク上で実際に機能。当初はほぼ無価値だった。',impact:'分散型ネットワークが「稼働する」という実証。以後すべてのブロックチェーンはこの日を起点とする。',lesson:'理論を「動く実装」にすることの力。最初の実用者の重要性。',people:['サトシ・ナカモト','ハル・フィニー'],rpg:{e:['懐疑論者の壁','無価値の呪縛'],j:['ジェネシスマイナー','最初の信者'],s:['創世ブロック生成','ネットワーク召喚']}},
+  {y:2010,cat:'文化',imp:4,name:'Bitcoin Pizza Day',summary:'ラズロ・ハニエツが10,000BTCでピザ2枚を購入。史上初のBitcoinによる実物取引が成立した。',bg:'Bitcoinフォーラムでハニエツが「BTCでピザを買いたい」と投稿。フロリダの別ユーザーが代理注文した。',result:'BTCに初めて現実の価値（ピザ2枚≒約40ドル）がついた。10,000BTC=当時0.004ドル/枚。',impact:'毎年5月22日が「Pizza Day」として世界的に祝われる。後に数百億円相当となり教訓として語られ続ける。',lesson:'最初の価値付けの難しさと重要性。「使われること」が通貨の始まり。',people:['ラズロ・ハニエツ（プログラマー）'],rpg:{e:['価値なき硬貨の幻影'],j:['最初の商人','価値錬金術師'],s:['価値付与の儀式','ピザ注文（伝説）']}},
+  {y:2010,cat:'バブル',imp:3,name:'Mt.Gox 取引所誕生',summary:'Magic: The Gatheringカード取引サイトが転用され、Bitcoinの初期主要取引所となった。',bg:'ジェド・マケイレブが既存ドメインを再活用。専用インフラなしで急造されたため後のセキュリティ問題を内包した。',result:'Bitcoinの価格発見機能が生まれ、市場参加者が増加した。',impact:'2013年には世界取引量の70%超を占めるも2014年に破綻。「取引所リスク」の概念の原点となった。',lesson:'スケールと設計の不一致は必ず崩壊する。インフラの品質が命脈を握る。',people:['ジェド・マケイレブ（創設者）','マルク・カルプレス（後継CEO）'],rpg:{e:['ずさん設計の時限爆弾'],j:['取引所主'],s:['流動性付与','信頼の架け橋（脆弱）']}},
+  {y:2011,cat:'崩壊',imp:4,name:'Silk Road 開設',summary:'Tor匿名ネットワーク上に開設された違法市場。Bitcoinを決済手段として薬物等を取引した。',bg:'Ross Ulbrichtが「自由市場」思想のもと、政府介入なしに商品を売買できる匿名市場を設計した。',result:'2013年にFBIが摘発、Ulbrichtを逮捕。約17万BTCを押収しFBIが後に競売にかけた。',impact:'Bitcoinが「犯罪ツール」として認知される一因に。同時に匿名性・検閲耐性という価値を実証した。',lesson:'技術は価値中立だが、使われ方が技術の社会的評価を決める。',people:['Ross Ulbricht（創設者、終身刑）','Christopher Tarbell（FBIエージェント）'],rpg:{e:['闇市場の主','法の番人'],j:['影の商人','暗号の隠者'],s:['匿名化の霧','オニオンルーティング']}},
+  {y:2011,cat:'バブル',imp:3,name:'Bitcoin 初のバブルと崩壊',summary:'BTCが1ドルから32ドルに急騰後、2ドルまで暴落。最初のバブル・崩壊サイクルが発生した。',bg:'Gawker等のメディアがSilk Roadを報道したことで一般層の関心が急増。Mt.Goxへの資金流入が価格を押し上げた。',result:'多数の初期投資家が損失を被る。一方で生き残った者はBitcoinの耐久性を確信した。',impact:'「急騰→崩壊→蘇生」というcryptoの基本パターンの最初の雛型。バブルサイクル論の原点。',lesson:'投機的熱狂は必ず反転する。しかしネットワーク自体の崩壊と価格の崩壊は別物。',people:['Mt.Gox（マルク・カルプレス）'],rpg:{e:['投機の魔神','暴落の波'],j:['初期投機師','HODL戦士'],s:['強靭なるHOLD','底値感知']}},
+  {y:2012,cat:'技術',imp:4,name:'Bitcoin 半減期（第1回）',summary:'ブロック210,000到達により、マイニング報酬が50BTCから25BTCへ半減した。',bg:'サトシが設計した総発行量2,100万BTCを保つためのアルゴリズム。約4年ごとに自動実行される。',result:'マイナーの収益が半減するも、ネットワークは継続稼働。翌年以降に価格が上昇した。',impact:'半減期が価格上昇の先行指標という「4年サイクル論」が成立。以後すべての半減期が重大イベントに。',lesson:'希少性のプログラム的保証。「予測可能な供給減少」が価値の裏付けになりうる。',people:['不明（プロトコルによる自動実行）'],rpg:{e:['インフレの魔王'],j:['マイナー','希少性の守護者'],s:['半減の儀式','供給制御魔法']}},
+  {y:2012,cat:'バブル',imp:3,name:'Coinbase 設立',summary:'ブライアン・アームストロングが一般ユーザー向けBitcoin取引所を設立。後にNASDAQ上場を果たした。',bg:'Bitcoinを一般人が簡単に買えるサービスが存在しなかった。Y Combinatorがシード投資。',result:'一般向けオンボーディングが大幅に改善。規制対応を重視した唯一の大手取引所として成長した。',impact:'「コンプライアンスが競争優位になる」ことを証明。2021年にNASDAQ直接上場（COIN）を果たした。',lesson:'規制への協調が長期的な信頼を生む。使いやすさが普及速度を決定する。',people:['ブライアン・アームストロング（CEO）','Fred Ehrsam（共同創業者）'],rpg:{e:['複雑さの壁','KYCの迷宮'],j:['普及の伝道師'],s:['オンボーディング魔法','規制適合の盾']}},
+  {y:2013,cat:'バブル',imp:4,name:'Bitcoin 1,000ドル突破',summary:'中国での爆発的普及と機関の関心増加により、BTC価格が初めて1,000ドルを超えた。',bg:'中国の取引所BTC China等が急成長。一般投資家の参入と規制指針の公表が逆に注目を集めた。',result:'1,000ドル到達後、中国規制発表により3週間で半値以下へ暴落した。',impact:'「デジタルゴールド」という概念が広まった年。メディア報道が大幅増加し一般認知度が跳ね上がった。',lesson:'価格の節目は心理的・象徴的に重大。メディア報道と価格は相互増幅する。',people:['不明（市場全体）','Bobby Lee（BTC China CEO）'],rpg:{e:['千ドルの壁'],j:['デジタルゴールド採掘師'],s:['価格突破','メディア召喚']}},
+  {y:2013,cat:'規制',imp:4,name:'キプロス金融危機とBitcoin流入',summary:'EU加盟国キプロスで預金封鎖・強制的な資産課税が実施され、Bitcoin需要が急増した。',bg:'キプロス政府がEUの救済条件として10万ユーロ超の銀行預金に約9.9%の課税を実施。前例のない強制課税。',result:'キプロスのBitcoin取引量が急増。BTCを「資産避難先」として報道するメディアが急増した。',impact:'「国家が資産を没収できない」という命題を現実が証明。Bitcoin採用の理念的根拠として世界に広まった。',lesson:'主権国家であっても市民の財産を強制徴収できる。数学に基づく資産保護の現実的価値。',people:['ニコス・アナスタシアデス（キプロス大統領）','EU・ECB・IMF（トロイカ）'],rpg:{e:['国家による資産収奪','トロイカの鎖'],j:['資産避難士','主権の守護者'],s:['資産の透明化','没収不能の盾']}},
+  {y:2013,cat:'規制',imp:3,name:'中国 Bitcoin規制発表',summary:'中国人民銀行が金融機関によるBitcoin取扱いを禁止。価格が3週間で50%以上暴落した。',bg:'Bitcoinブームによる一般層の過熱投資を中国政府が懸念。資本逃避手段としての利用も問題視された。',result:'中国の取引所が法定通貨との直接取引を停止。市場から中国人民元が消えた。',impact:'「中国リスク」という概念がcryptoに定着。以後、中国の規制動向は世界市場に直接影響を与え続けた。',lesson:'単一国の規制が世界市場を揺さぶる。分散型システムでも価格は地政学に従属する。',people:['中国人民銀行（PBOC）'],rpg:{e:['規制の長城','中央銀行の番兵'],j:['規制回避師'],s:['長城突破','P2P取引']}},
+  {y:2014,cat:'崩壊',imp:5,name:'Mt.Gox 破綻',summary:'世界最大Bitcoin取引所がハッキングにより85万BTC（約480億円相当）を失い、民事再生を申請した。',bg:'マルク・カルプレスによる杜撰なセキュリティ管理と内部統制の欠如。ハッキングは数年かけて徐々に進行。',result:'85万BTCが消失（約46万BTCは後に発見）。顧客資産が凍結され、BTCが約80%暴落した。',impact:'「Not your keys, not your coins」格言誕生。ハードウェアウォレット市場が拡大。取引所リスクの概念が確立。',lesson:'自己管理（セルフカストディ）の原則。中央集権的保管は単一障害点になる。',people:['マルク・カルプレス（CEO、後に有罪）','ジェド・マケイレブ（創設者）'],rpg:{e:['内部腐敗の魔物','ハッカー集団'],j:['ウォレット守護者','セキュリティ聖騎士'],s:['秘密鍵の守護','コールドウォレット封印']}},
+  {y:2014,cat:'技術',imp:5,name:'Ethereum 発表',summary:'19歳のヴィタリック・ブテリンが「プログラム可能なブロックチェーン」Ethereumを設計・発表した。',bg:'Bitcoinのスクリプト言語の限界に気づいたブテリンが独自プラットフォームを構想。Gavin Woodらが共同設計した。',result:'2014年にクラウドセールで約1,800万ドルを調達。2015年にメインネット稼働。',impact:'スマートコントラクトという概念の実装。DeFi・NFT・DAO・Web3すべての技術的母体となった。',lesson:'既存システムの制約を「制限」ではなく「機会」として捉える視点。19歳の構想が産業を変えた。',people:['ヴィタリック・ブテリン','Gavin Wood','Joseph Lubin','Charles Hoskinson'],rpg:{e:['ビットコイン原理主義者','スクリプトの壁'],j:['スマートコントラクト賢者','分散アプリ建築家'],s:['スマートコントラクト詠唱','EVM起動']}},
+  {y:2015,cat:'技術',imp:5,name:'Ethereum メインネット公開',summary:'Ethereumブロックチェーンが正式稼働。スマートコントラクトによる分散型アプリケーションの時代が開幕した。',bg:'1年以上のテストネット期間を経て、Frontierと呼ばれる初期バージョンがリリースされた。',result:'開発者がDAppsを構築できる汎用プラットフォームが誕生。ERC-20標準が後のICOブームの基盤に。',impact:'「Bitcoin以外に世界がある」と証明。プラットフォームがエコシステムを産む先例を作った。',lesson:'汎用性の設計が特化設計を超える時がある。プラットフォームがエコシステムを産む。',people:['ヴィタリック・ブテリン','Ethereum Foundation'],rpg:{e:['専用コインの壁'],j:['DApp建築家'],s:['汎用魔法陣展開','ERC召喚']}},
+  {y:2016,cat:'崩壊',imp:4,name:'The DAO ハック',summary:'Ethereum上のDAOがリエントランシー攻撃を受け、360万ETH（当時約6,000万ドル）が盗まれた。',bg:'The DAOはクラウドファンディングとして1,500万ドル超を調達した当時最大のスマートコントラクト。コードの脆弱性が放置されていた。',result:'Ethereumコミュニティがハードフォークを実施しETHとETC（Ethereum Classic）に分裂した。',impact:'「コードは法律か」対「コミュニティが法律か」という哲学的分裂の起点。スマートコント監査業界が誕生した。',lesson:'コードの不変性と修正可能性のトレードオフ。監査なきデプロイの危険性。',people:['ヴィタリック・ブテリン','Stephan Tual（The DAO設計者）','攻撃者（正体不明）'],rpg:{e:['リエントランシーの亡霊','コード欠陥の魔物'],j:['スマートコント監査士','フォーク魔導師'],s:['コード監査の眼','緊急ハードフォーク']}},
+  {y:2016,cat:'技術',imp:4,name:'Bitcoin 半減期（第2回）',summary:'ブロック420,000到達により、マイニング報酬が25BTCから12.5BTCへ半減した。',bg:'プロトコルによる自動実行。2012年の第1回半減期との対比で「4年サイクル論」への注目が高まった。',result:'短期的には価格への大きな影響はなかったが、翌2017年に大バブルが到来した。',impact:'「半減期→翌年高値」パターンが2度目の検証。S2Fモデル等の信頼性が高まった。',lesson:'希少性の強化は遅効性。市場は長期的に供給制約を価格に反映する。',people:['不明（プロトコルによる自動実行）'],rpg:{e:['インフレの余韻'],j:['希少性の番人'],s:['第二の半減','4年サイクル予言']}},
+  {y:2016,cat:'崩壊',imp:3,name:'Bitfinex ハック',summary:'大手取引所Bitfinexから約12万BTC（当時約7,200万ドル）がハッキングにより盗まれた。',bg:'マルチシグウォレットの実装ミスを突かれた。前例があったにもかかわらず対策が不十分だった。',result:'顧客損失を全ユーザーへの「BFXトークン」で分散補填という異例の対応。後に全額返済した。',impact:'盗まれた資産の一部は2022年に米司法省が回収・没収。取引所セキュリティ基準の見直しが進んだ。',lesson:'多額の資産を管理する組織には相応のセキュリティが必要。責任の補填モデルの多様性。',people:['Bitfinex経営陣','Ilya Lichtenstein・Heather Morgan（後に資産洗浄で逮捕）'],rpg:{e:['マルチシグ破りの盗賊'],j:['取引所守護者','資産回収調査官'],s:['マルチシグ錠前','証拠追跡の目']}},
+  {y:2017,cat:'バブル',imp:5,name:'ICOブーム',summary:'ERC-20トークンを使ったInitial Coin Offeringが爆発。ホワイトペーパーだけで数十億円の調達が相次いだ。',bg:'Ethereumのスマートコントラクトがトークン発行を誰でも可能にした。規制の空白が資金調達を容易にした。',result:'2017〜18年で数百億ドルが調達される一方、大多数のプロジェクトが消滅またはスキャンダルで崩壊した。',impact:'後のSECによる規制強化を直接招いた。VCに代わる新型資金調達モデルを示した。',lesson:'規制の空白は短命。詐欺と革新が共存する環境では淘汰が激しい。',people:['不明（多数のプロジェクト）','SEC（規制当局として後に介入）'],rpg:{e:['ラグプル詐欺師','規制の鎖'],j:['トークン錬金術師','ホワイトペーパー魔法使い'],s:['ERC-20召喚','IDO詠唱']}},
+  {y:2017,cat:'バブル',imp:5,name:'Bitcoin 20,000ドル達成',summary:'12月17日にBTCが19,783ドルの史上最高値（当時）を記録。世界中で「仮想通貨バブル」として報道された。',bg:'ICOブーム・機関投資家の関心増大・CMEとCBOEでのBitcoin先物取引開始が重なった。',result:'数週間後から暴落が始まり、2018年末には3,000ドル台まで下落した。',impact:'多数の一般投資家が初めてcryptoを購入した年。この最高値は約3年後の2020年末まで更新されなかった。',lesson:'先物上場は短期的には上昇、長期的には価格発見の精度を高める。FOMOは最悪の買いタイミングを生む。',people:['不明（市場参加者全体）','CME Group','CBOE'],rpg:{e:['FOMO（機会損失の亡霊）','バブル崩壊の波'],j:['2万ドル登頂者'],s:['高値追いの呪縛','先物ヘッジ']}},
+  {y:2017,cat:'技術',imp:3,name:'Bitcoin Cash ハードフォーク',summary:'ブロックサイズ論争を契機にBitcoinがBitcoin Cashにハードフォーク分裂した。',bg:'トランザクション手数料の高騰と処理速度問題を巡り、「ブロックサイズ拡大派」と「SegWit派」が対立した。',result:'既存BTCホルダーが等量のBCHを受け取る形で分裂。BCHは独自のチェーンとして稼働を継続した。',impact:'思想の違いがコインの物理的分裂として可視化された最初の大規模事例。フォーク戦争の原型となった。',lesson:'コミュニティ合意なきスケール解決は分裂を生む。技術論争は必ず政治論争になる。',people:['Roger Ver（BCH支持派）','Adam Back（BTC側）','Craig Wright（BCH側）'],rpg:{e:['内部分裂の魔物'],j:['フォーク戦士','チェーン分岐師'],s:['ハードフォーク断裂','ブロック拡張']}},
+  {y:2017,cat:'文化',imp:3,name:'CryptoKitties — NFTの原点',summary:'Ethereum上でデジタル猫を繁殖・売買するゲームがネットワークを輻輳させるほどの人気を博した。',bg:'Dapper LabsがERC-721規格（非代替性トークン）を使った最初の大規模ゲームを開発した。',result:'一部のCryptoKittyが数百万円相当で取引される。EthereumのGas代が高騰しネットワークが詰まった。',impact:'NFTの概念とERC-721規格の普及の起点。「デジタルアイテムに所有権がつく」概念を初めて一般に示した。',lesson:'遊びが技術の限界と可能性を同時に暴く。スケーラビリティ問題の最初の現実的証明。',people:['Dapper Labs（Roham Gharegozleh CEO）'],rpg:{e:['ガス代の暴君','ネットワーク渋滞の怪物'],j:['NFT繁殖師'],s:['ERC-721召喚','レア猫鑑定']}},
+  {y:2018,cat:'バブル',imp:4,name:'大暴落 — Crypto Winter突入',summary:'BTCが2万ドルから年末3,000ドル台へ85%暴落。アルトコインは95%以上の下落が続出した。',bg:'ICO詐欺の横行・規制強化への恐怖・機関投資家不在・過剰投機が複合した構造的崩壊。',result:'数十兆円の時価総額が消滅。大多数のICOプロジェクトが消滅し「Crypto Winter」と呼ばれた。',impact:'生き残ったプロジェクト（BTC・ETH）が次のサイクルで復活。淘汰が品質を高めた側面もある。',lesson:'バブル後の冬は必ず来る。しかし技術の基盤が存在する限り、完全消滅はしない。',people:['不明（市場参加者全体）'],rpg:{e:['冬将軍（クリプトウィンター）','清算の嵐'],j:['生存者','HODL修道士'],s:['耐久のHODL','底値での蓄積']}},
+  {y:2018,cat:'規制',imp:3,name:'各国ICO規制の世界的強化',summary:'米SEC・中国・EUが相次いでICOを未登録証券として規制。多数のプロジェクトが訴追または自主返金した。',bg:'2017年のICOブームで詐欺的プロジェクトが横行したことへの規制当局の反応。',result:'ICOは急減し、代わりにIEO・SAFT等の規制対応型モデルが生まれた。',impact:'「暗号資産は規制の外に存在できない」という認識が定着。コンプライアンスが業界の必須要件になった。',lesson:'規制の空白は一時的。スケールするほど規制のレーダーに引っかかる。',people:['SEC（Jay Clayton委員長）','中国人民銀行','EU各国規制当局'],rpg:{e:['規制の鉄槌','コンプライアンス迷宮'],j:['規制対応魔法士','証券弁護士'],s:['ハウィーテスト突破','規制適合変換']}},
+  {y:2019,cat:'技術',imp:4,name:'DeFiの萌芽（Compound・Uniswap）',summary:'分散型融資プロトコルCompoundと分散型取引所Uniswapが相次いで登場し、DeFiの基礎が形成された。',bg:'スマートコントラクトによって「銀行なし」で融資・交換ができるという概念が実装段階に入った。',result:'TVL（Total Value Locked）は当初数百万ドルだったが、2020年に急爆発する素地が出来た。',impact:'DeFi Summer（2020年）・イールドファーミング・流動性マイニングの直接的な前身。',lesson:'既存の金融機能（融資・両替）をコードで再実装できる。シンプルな設計が最も拡張される。',people:['Robert Leshner（Compound）','Hayden Adams（Uniswap）'],rpg:{e:['中央集権銀行の守門者'],j:['流動性提供者','AMM魔術師'],s:['流動性プール展開','イールドファーミング開始']}},
+  {y:2019,cat:'規制',imp:4,name:'Facebook Libra 発表',summary:'Facebookが独自ステーブルコイン「Libra」を発表。世界の議会と中央銀行が一斉に反発した。',bg:'WhatsApp等30億人ユーザー基盤を持つFacebookが通貨発行に乗り出すことへの危機感が高まった。',result:'各国議会が公聴会を開催。規制圧力により計画は大幅縮小され、2022年に事業清算。',impact:'CBDC（中央銀行デジタル通貨）開発を各国が加速させる直接の契機となった。',lesson:'既存通貨体制への挑戦は国家の総力を引き出す。民間通貨発行の政治的難度。',people:['マーク・ザッカーバーグ','David Marcus（Libra責任者）'],rpg:{e:['国家通貨の番人','G7の防壁'],j:['テック帝国の通貨発行者'],s:['30億人ネットワーク','規制圧力無効化（失敗）']}},
+  {y:2020,cat:'バブル',imp:5,name:'DeFi Summer',summary:'CompoundのCOMPトークン配布を契機にイールドファーミングが爆発。DeFiのTVLが10億→100億ドル超へ急騰した。',bg:'コロナ禍の低金利環境で高利回りを求める資金がDeFiに殺到。流動性マイニングという新しいインセンティブ設計が爆発的普及。',result:'Uniswap・Aave・MakerDAO・SushiSwapが急成長。UNIトークンのエアドロップが注目を集めた。',impact:'「銀行なし金融」の実証。NFT・Web3ブームの直接の前置きとなり2021年大バブルの基盤を作った。',lesson:'インセンティブ設計がプロトコルの成長速度を決める。流動性は最も強力な競争優位。',people:['Robert Leshner','Hayden Adams','Stani Kulechov（Aave）','Rune Christensen（MakerDAO）'],rpg:{e:['CEX独占の壁'],j:['流動性農夫（Yield Farmer）','AMM設計者'],s:['イールドファーミング','流動性マイニング','エアドロップ収穫']}},
+  {y:2020,cat:'技術',imp:4,name:'Bitcoin 半減期（第3回）',summary:'ブロック630,000到達で報酬が12.5BTCから6.25BTCへ半減。翌年の史上最高値更新の伏線となった。',bg:'プロトコルによる自動実行。コロナ禍の金融緩和と重なり「デジタルゴールド」としての需要が増大した時期。',result:'短期的な価格変動は小さかったが、翌2021年11月に69,000ドルの史上最高値を記録した。',impact:'3回連続で「半減期後1〜1.5年以内に高値更新」が成立。S2Fモデルの信頼性が一時的に高まった。',lesson:'供給制約の効果は遅効性。マクロ環境との重なりが増幅効果を生む。',people:['不明（プロトコルによる自動実行）','PlanB（S2Fモデル提唱者）'],rpg:{e:['インフレの大魔王'],j:['S2F予言者'],s:['第三の半減','供給枯渇の予言']}},
+  {y:2020,cat:'バブル',imp:3,name:'MicroStrategy 法人Bitcoin購入',summary:'上場企業MicroStrategyが社債を発行してBTCを財務資産として大量購入。法人保有の前例を作った。',bg:'マイケル・セイラーCEOがドル建て現金の価値毀損リスクを回避するため、BTCを「デジタルゴールド」と位置づけた。',result:'2020〜21年にかけて数万BTCを取得。Teslaも2021年に15億ドル相当のBTCを購入した。',impact:'「上場企業がBTCを財務資産として持つ」という前例なきモデルを確立。機関投資家参入の先鞭をつけた。',lesson:'企業財務戦略としての暗号資産。CFOレベルでのBTC評価が始まった転換点。',people:['マイケル・セイラー（MicroStrategy CEO）','イーロン・マスク（Tesla、後に売却）'],rpg:{e:['ドルインフレの侵食者'],j:['法人HODL戦略家'],s:['バランスシート転換','機関資金召喚']}},
+  {y:2021,cat:'バブル',imp:5,name:'Bitcoin 69,000ドル達成（史上最高値・当時）',summary:'11月10日にBTCが69,044ドルの史上最高値（当時）を記録。全暗号資産の時価総額が3兆ドルを超えた。',bg:'半減期効果・機関投資家参入・コロナ緩和マネー・ETFへの期待・DeFi/NFTブームが複合的に重なった。',result:'ETH・SOL・BNB等も連動して最高値を更新。NFT市場とDeFiがメインストリームに躍り出た。',impact:'この高値は2024年まで更新されず「2021年バブル」として記録。機関投資家がcryptoを「資産クラス」と認識した転換点。',lesson:'複数の強気要因の重なりは最大バブルを生む。高値を当時に認識することは不可能に近い。',people:['不明（市場参加者全体）','BlackRock','Fidelity'],rpg:{e:['FOMO亡霊（再登場）','高値掴みの呪い'],j:['頂上登頂者'],s:['時価総額3兆への到達','複合バブル生成']}},
+  {y:2021,cat:'バブル',imp:4,name:'NFTブーム（Beeple・BAYC）',summary:'BeepleのNFT作品が6,930万ドルでクリスティーズ落札。Bored Ape Yacht Clubが誕生しNFTがメインストリームへ。',bg:'Ethereumのメインストリーム化・セレブリティの参入・「デジタル所有権」への関心が高まった。',result:'2021年のNFT市場規模は約250億ドル。多くは2022年の暴落でほぼ無価値になった。',impact:'「デジタルデータの所有権証明」という概念が世界に普及。アート・ゲーム・チケット等への応用可能性が示された。',lesson:'投機と文化的価値の分離の難しさ。所有権の証明≠価値の保証。',people:['Beeple（Mike Winkelmann）','Yuga Labs（BAYC開発）','OpenSea'],rpg:{e:['価値なき画像の幻','ラグプル詐欺師'],j:['NFT鑑定士','デジタルアーティスト'],s:['希少性証明','ロイヤリティ自動徴収']}},
+  {y:2021,cat:'規制',imp:5,name:'El Salvador Bitcoin 法定通貨化',summary:'エルサルバドルが世界初のBitcoin法定通貨国として採用。国民がChivoウォレットを受け取った。',bg:'ナジブ・ブケレ大統領が送金手数料削減・銀行口座なし人口の金融包摂を目的として決断した。',result:'IMFが融資条件として廃止を要求。2024年にIMFとの合意でBitcoinの法的通貨ステータスは任意となった。',impact:'国家レベルでのBitcoin採用という前例なき実験。発展途上国の「ドル依存からの脱却」モデルとして議論された。',lesson:'Bitcoin採用は政治・経済・外交をすべて巻き込む。国家主権と国際金融秩序の衝突。',people:['ナジブ・ブケレ（大統領）','IMF','各国政府（批判側）'],rpg:{e:['IMFの鎖','ドル覇権の守護者'],j:['Bitcoin国家指導者'],s:['法定通貨化宣言','Chivoウォレット配布']}},
+  {y:2021,cat:'規制',imp:4,name:'中国 暗号資産全面禁止',summary:'中国が暗号資産取引・マイニングを全面禁止。世界のマイニングシェア50%超が一夜で消滅した。',bg:'資本逃避の防止・電力消費問題・CBDC（デジタル人民元）推進を優先した国家戦略的決断。',result:'マイニングが米国・カザフスタン・ロシア等へ分散。BTCのハッシュレートが数週間で約50%低下後回復した。',impact:'Bitcoinネットワークの地理的分散が進んだ。「単一国の禁止でBitcoinは止まらない」ことが実証された。',lesson:'分散型ネットワークは禁止に対する耐性を持つ。しかし地政学的リスクは価格に大きく影響する。',people:['中国政府・中国共産党','中国人民銀行'],rpg:{e:['長城の禁令','集権国家の鎖'],j:['禁止耐性の実証者'],s:['ハッシュレート分散','検閲耐性証明']}},
+  {y:2021,cat:'文化',imp:3,name:'Play-to-Earn ブーム（Axie Infinity）',summary:'フィリピン等でAxie Infinityによる「Play-to-Earn」が爆発。ゲームで生計を立てる人が続出した。',bg:'コロナ禍での雇用喪失と、NFTキャラクターを使ったゲーム経済が最低賃金を超えた地域での普及が重なった。',result:'Axieのピーク時の1日取引額は数百億円規模。ゲームトークンの崩壊（2022年）で多くのプレイヤーが損失を被った。',impact:'「ゲーム内経済の現実化」という概念の実証と限界を同時に示した。GameFi・Web3ゲームの原型となった。',lesson:'P2E経済は新規参入者への依存度が高く、自己崩壊リスクを内包する。持続可能な経済設計の重要性。',people:['Sky Mavis（Axie開発、Trung Nguyen CEO）'],rpg:{e:['ポンジーゲームの構造','Ronin Bridgeハッカー'],j:['P2Eプレイヤー','ギルドスカラー'],s:['Play-to-Earn','NFTキャラクター育成']}},
+  {y:2022,cat:'崩壊',imp:5,name:'LUNA/UST 崩壊（テラショック）',summary:'アルゴリズム型ステーブルコインUSTがデペッグ。LUNAは数日で99.99%暴落し約600億ドルが消失した。',bg:'Do KwonがLUNAとUSTの相互担保による「無限の安定」を設計したが、大規模な引き出しへの耐性がなかった。',result:'LUNAの価格は1ドルから0.0001ドル以下へ。数十万人の投資家が資産のほぼ全額を失った。',impact:'「アルゴリズム型ステーブルコインは危険」という教訓。ステーブルコイン規制の直接的な契機となった。',lesson:'設計上の欠陥は市場の信頼が失われた瞬間に爆発する。「アルゴリズムによる安定」の幻想。',people:['Do Kwon（Terra創設者、逃亡・逮捕）','Terraform Labs','Three Arrows Capital（連鎖破綻）'],rpg:{e:['デペッグの悪魔','死のスパイラル'],j:['ステーブル設計師（失敗例）','リスク警告者'],s:['デスペッグ（呪い）','死のスパイラル召喚（禁忌）']}},
+  {y:2022,cat:'崩壊',imp:5,name:'FTX 破綻（SBF事件）',summary:'世界第2位取引所FTXが経営危機を公表し数日で破綻。Sam Bankman-Friedが顧客資金を横流しした。',bg:'SBFがFTX顧客資産をAlamedaリサーチ（自社ヘッジファンド）に流用。CoinDesk報道で発覚し取り付け騒ぎが発生した。',result:'300万人超の顧客が資産凍結。BTCが16,000ドルへ急落。SBFは詐欺等で有罪・25年の禁固刑。',impact:'Mt.Gox以来最大のスキャンダル。Crypto規制の必要性をめぐる議会議論が最高潮に。セルフカストディへの回帰が起きた。',lesson:'カリスマ的創業者への過剰な信頼。「効果的利他主義」の看板と実態の乖離。監査の重要性。',people:['Sam Bankman-Fried（CEO、有罪）','Caroline Ellison（司法取引）','CZ Binance（ライバル・発端）'],rpg:{e:['詐欺的帝国主','内部告発の炎'],j:['暗号資産弁護士','Proof-of-Reserves監査士'],s:['不正送金（禁忌）','Proof-of-Reserves提示']}},
+  {y:2022,cat:'技術',imp:5,name:'Ethereum The Merge（PoW→PoS移行）',summary:'EthereumがProof-of-WorkからProof-of-Stakeへ移行完了。エネルギー消費が99.9%削減された。',bg:'Bitcoinのエネルギー問題への批判に対応しつつ、スケーラビリティのための基盤（シャーディング準備）を整える狙い。',result:'マイナーが不要になりバリデータへ移行。ETHのインフレ率が大幅に低下（場合によりデフレに）した。',impact:'ブロックチェーンの環境問題への最大の回答。「ETHはエコ」という評価が高まりESG投資家の関心が増した。',lesson:'大規模システムの根本的変更は可能。数年にわたる段階的実装と広範なコミュニティ合意が鍵。',people:['ヴィタリック・ブテリン','Ethereum Foundation','Danny Ryan（技術調整）'],rpg:{e:['電力の大食らい','PoWマイナーの抵抗'],j:['ステーカー（Validator）'],s:['The Merge実行','電力消費99.9%削減']}},
+  {y:2022,cat:'バブル',imp:4,name:'Crypto Winter 2022（第2次）',summary:'FTX崩壊・LUNA崩壊・金利急上昇が重なりcrypto市場全体の時価総額がピーク比70%以上消失した。',bg:'FRBの急激な利上げでリスク資産全般が売られ、LUNA崩壊とFTX破綻が連鎖破綻（3AC・Celsius・BlockFi）を引き起こした。',result:'BTCが69,000ドルから15,000ドル台へ。多数の貸し出しプロトコルが破綻し利用者が資産を失った。',impact:'CeFi（中央集権型暗号資産金融）への信頼が崩壊。DeFiのスマートコントラクト型が相対的に評価された。',lesson:'利回りが高すぎる商品は必ずリスクを内包している。CeFiとDeFiのリスク差の再認識。',people:['三矢キャピタル（Su Zhu・Kyle Davies）','Celsius（Alex Mashinsky）','BlockFi'],rpg:{e:['冬将軍2022','連鎖破綻の業火'],j:['生存者','リスク管理士'],s:['資産自己管理','DeFiへの逃避']}},
+  {y:2023,cat:'規制',imp:4,name:'SEC が Coinbase・Binance を提訴',summary:'SECがBinanceとCoinbaseを相次いで提訴。暗号資産を「未登録証券」として規制しようとする姿勢が鮮明化した。',bg:'Gary Gensler委員長の強硬姿勢が継続。FTX破綻後の世論が追い風となった。',result:'両社とも争う姿勢を示し法廷闘争へ。市場への短期的な悪影響が生じたが、ETFへの期待が相殺した。',impact:'「どのトークンが証券か」の法的明確化を要求する声が高まり、業界の規制整備が加速した。',lesson:'規制の明確性の欠如はイノベーションを阻害する。業界が規制と戦うか協調するかの分岐点。',people:['Gary Gensler（SEC委員長）','Brian Armstrong（Coinbase CEO）','CZ（Binance、後に辞任）'],rpg:{e:['規制の鉄槌','ハウィーテストの魔法陣'],j:['コンプライアンス法師'],s:['証券分類回避','規制との対話']}},
+  {y:2023,cat:'バブル',imp:4,name:'Bitcoin ETF 申請ラッシュ',summary:'BlackRock・Fidelity等の世界最大級資産運用会社がBitcoinスポットETFを一斉申請した。',bg:'FTX破綻後に機関投資家はETF経由での投資を模索。BlackRockの申請が他社を触発した。',result:'2024年1月のSEC承認への期待から市場が回復。BTCは年間で2倍以上に上昇した。',impact:'「機関投資家がcryptoに正式な入口を求めている」という歴史的転換の前哨戦。',lesson:'規制と市場は対立でなく対話で進化する。最大手の参入申請は市場のシグナルとして強力に機能する。',people:['Larry Fink（BlackRock CEO）','Gary Gensler（SEC委員長）','ARK Invest等'],rpg:{e:['ETF承認の壁','SEC門番'],j:['機関投資家先遣隊'],s:['機関資金召喚（準備）','SEC交渉']}},
+  {y:2024,cat:'規制',imp:5,name:'ビットコインスポットETF 承認（米国）',summary:'1月10日にSECがBlackRock等11社のBitcoinスポットETFを承認。初日だけで約46億ドルが流入した。',bg:'GrayscaleがSECとの訴訟で勝訴（2023年）し、SECがETF承認の阻止理由を失った。',result:'BlackRockのiSharesビットコインETFは最速で100億ドルを突破。金融市場インフラとcryptoが本格接続した。',impact:'ウォール街がBitcoinを正式な投資対象として受け入れた転換点。年金基金・機関投資家の参入の扉が開いた。',lesson:'法的・制度的インフラの整備は大規模な機関資金を引き込む。規制との長期戦は時に勝てる。',people:['Gary Gensler（承認署名）','Larry Fink（BlackRock）','Barry Silbert（Grayscale）'],rpg:{e:['制度の最後の壁'],j:['ETF承認の使者'],s:['ウォール街接続','制度的資金流入']}},
+  {y:2024,cat:'技術',imp:4,name:'Bitcoin 半減期（第4回）',summary:'4月20日にブロック840,000到達でマイニング報酬が6.25BTCから3.125BTCへ半減した。',bg:'プロトコルによる自動実行。ETF承認直後という稀有なタイミングで、前回以上の注目が集まった。',result:'短期的には価格への直接的影響は限定的。BTC総発行量の97%以上がすでに採掘済みとなった。',impact:'4度目の半減期。過去3回のパターンが続けば2025年に高値更新が期待される。',lesson:'プログラムされた希少性の強化。マクロ環境との組み合わせが効果を決定する。',people:['不明（プロトコルによる自動実行）'],rpg:{e:['インフレの残影'],j:['第四次半減期の証人'],s:['3.125BTC報酬','供給限界への到達']}},
+  {y:2024,cat:'バブル',imp:5,name:'Bitcoin 100,000ドル突破',summary:'11月のトランプ大統領当選直後からBTCが急騰し、12月に史上初の100,000ドルを突破した。',bg:'ETF承認後の機関資金流入・半減期効果・トランプ政権による規制緩和期待が三重に重なった。',result:'BTCが103,000ドル超を記録し新たな史上最高値を更新。時価総額が再び2兆ドルを超えた。',impact:'「6桁のBitcoin」という心理的節目の突破。政治リスクと規制緩和がcrypto価格に直結する時代の象徴。',lesson:'政治的追い風と制度的インフラの整備が重なると価格は新たな次元へ到達する。',people:['ドナルド・トランプ（大統領当選）','BlackRock等機関投資家','MicroStrategy'],rpg:{e:['6桁の壁','心理的高値恐怖'],j:['伝説のHODLer','100K登頂者'],s:['10万ドル突破','政治的追い風活用']}},
+  {y:2024,cat:'規制',imp:4,name:'トランプ政権の親Crypto姿勢',summary:'当選後、規制緩和・戦略的Bitcoin備蓄・SEC人事刷新等の親crypto政策を相次いで表明した。',bg:'トランプが2024年大統領選でcryptoコミュニティの支持を積極的に取り込み、「crypto大統領」を自称した。',result:'Gary Gensler（SEC委員長）が辞任。新委員長はcryptoフレンドリーな姿勢を示した。',impact:'国家の政治的立場がcrypto市場全体を動かす時代の到来。米国の規制整備が大幅に前進する可能性。',lesson:'政治とcryptoの完全な融合。選挙戦略としてのcrypto支持の有効性。',people:['ドナルド・トランプ','Paul Atkins（新SEC委員長候補）','Gary Gensler（辞任）'],rpg:{e:['旧規制体制の番人'],j:['政治家同盟者'],s:['大統領令発令','SEC人事刷新']}},
+];
+
+let curCat='all';
+let openCard=null;
+
+function setF(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('.f-btn').forEach(b=>{
+    b.className='f-btn';
+    if(b.dataset.cat===cat) b.classList.add('on-'+cat);
+  });
+  applyFilters();
+}
+
+function applyFilters(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const rows=DB.filter(d=>{
+    if(curCat!=='all'&&d.cat!==curCat)return false;
+    if(q&&!d.name.toLowerCase().includes(q)&&!d.summary.toLowerCase().includes(q))return false;
+    return true;
+  });
+  document.getElementById('count-badge').textContent=rows.length+'件';
+  renderTimeline(rows);
+}
+
+function renderTimeline(rows){
+  const yc=document.getElementById('year-col');
+  const ec=document.getElementById('events-col');
+  yc.innerHTML='';ec.innerHTML='';
+  if(!rows.length){
+    document.getElementById('empty').style.display='block';
+    return;
+  }
+  document.getElementById('empty').style.display='none';
+
+  // group by year
+  const byYear={};
+  rows.forEach(d=>{
+    if(!byYear[d.y])byYear[d.y]=[];
+    byYear[d.y].push(d);
+  });
+
+  let lastEra='';
+  Object.keys(byYear).sort((a,b)=>a-b).forEach(y=>{
+    const era=ERAS[y]||'';
+    // year cell
+    const yd=document.createElement('div');
+    yd.className='year-anchor';
+    yd.id='y'+y;
+    yd.textContent=y;
+    yc.appendChild(yd);
+    // events wrapper
+    const ew=document.createElement('div');
+    ew.className='year-block';
+    if(era!==lastEra){
+      lastEra=era;
+      const el=document.createElement('div');
+      el.className='era-label';
+      el.textContent=era;
+      ew.appendChild(el);
+    }
+    byYear[y].forEach((d,i)=>{
+      const card=document.createElement('div');
+      card.className='event-card';
+      const col=CAT_COLOR[d.cat]||'#888';
+      const impH=[5,4,3,2,1].map(n=>`<div class="imp-seg${n<=d.imp?' lit':''}"></div>`).join('');
+      const rpgH=`
+        <div class="rpg-panel">
+          <div class="rpg-head">RPG要素 — 敵 / 職業 / スキル</div>
+          <div class="rpg-chips">
+            ${d.rpg.e.map(x=>`<span class="rpg-chip e"><span class="chip-prefix">👾</span>${x}</span>`).join('')}
+            ${d.rpg.j.map(x=>`<span class="rpg-chip j"><span class="chip-prefix">⚔</span>${x}</span>`).join('')}
+            ${d.rpg.s.map(x=>`<span class="rpg-chip s"><span class="chip-prefix">✦</span>${x}</span>`).join('')}
+          </div>
+        </div>`;
+      const ppl=d.people.map(p=>`<span class="person-tag">${p}</span>`).join('');
+      card.innerHTML=`
+        <div class="card-header">
+          <div class="card-left">
+            <div class="card-row1">
+              <div class="cat-pip" style="background:${col}"></div>
+              <span class="cat-label-small">${d.cat}</span>
+            </div>
+            <div class="event-title">${d.name}</div>
+            <div class="event-summary">${d.summary}</div>
+          </div>
+          <div class="card-right">
+            <div class="imp-bar">${impH}</div>
+            <div class="chevron">▾</div>
+          </div>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="d-block"><div class="d-label">背景 — なぜ起きたか</div><div class="d-val">${d.bg}</div></div>
+            <div class="d-block"><div class="d-label">結果 — 何が変わったか</div><div class="d-val">${d.result}</div></div>
+            <div class="d-block"><div class="d-label">長期的影響</div><div class="d-val">${d.impact}</div></div>
+            <div class="d-block"><div class="d-label">教訓（本質）</div><div class="d-val"><b>${d.lesson}</b></div></div>
+            <div class="d-block"><div class="d-label">関係人物・組織</div><div class="d-val"><div class="people-row">${ppl}</div></div></div>
+          </div>
+          ${rpgH}
+        </div>`;
+      card.addEventListener('click',()=>{
+        if(card.classList.contains('open')){
+          card.classList.remove('open');
+        } else {
+          if(openCard)openCard.classList.remove('open');
+          card.classList.add('open');
+          openCard=card;
+        }
+      });
+      ew.appendChild(card);
+    });
+    ec.appendChild(ew);
+  });
+
+  // scroll animations
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.event-card').forEach((c,i)=>{
+    c.style.transitionDelay=(i%4)*0.04+'s';
+    obs.observe(c);
+  });
+
+  // year highlight on scroll
+  const yearObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const id=e.target.id;
+      const y=id.replace('y','');
+      const anchor=document.getElementById('y'+y);
+      if(anchor)anchor.classList.toggle('active-year',e.isIntersecting);
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.year-block').forEach(b=>yearObs.observe(b));
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(location.href).then(()=>{
+    const t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2000);
+  });
+}
+
+renderTimeline(DB);
+</script>
+</body>
+</html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Chronicles — A Complete History of Crypto 2008–2024</title>
+<meta name="description" content="From Bitcoin's genesis to the ETF era. 40 defining events across technology, collapse, bubbles, regulation, and culture.">
+<meta property="og:title" content="Crypto Chronicles — A Complete History of Crypto 2008–2024">
+<meta property="og:description" content="40 events. 16 years. The full story of crypto, told through five lenses.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;
+  --surface:#111114;
+  --surface2:#18181d;
+  --border:#222228;
+  --border2:#2e2e38;
+  --text:#e8e6e0;
+  --muted:#7a7870;
+  --dim:#3a3a42;
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --tech:#7b6ef6;
+  --col:#e05252;
+  --bub:#e89a3c;
+  --reg:#4ea8de;
+  --cul:#52c78a;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--display);line-height:1.7;min-height:100vh;overflow-x:hidden}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4;
+}
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(9,9,11,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 clamp(16px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.nav-logo{
+  font-family:var(--display);font-size:15px;font-weight:800;
+  letter-spacing:.04em;color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+.nav-right{display:flex;gap:6px;align-items:center}
+.lang-link{
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  padding:4px 10px;border-radius:3px;
+  border:1px solid var(--border2);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .15s;text-decoration:none;
+}
+.lang-link:hover{border-color:var(--gold);color:var(--gold)}
+.share-btn{
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+  padding:5px 12px;border-radius:3px;
+  border:1px solid var(--border2);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.share-btn:hover{border-color:var(--gold);color:var(--gold)}
+.hero{
+  padding:80px clamp(16px,5vw,80px) 60px;
+  max-width:900px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+}
+.hero-title{
+  font-family:var(--display);font-size:clamp(36px,6vw,72px);
+  font-weight:800;line-height:1.05;letter-spacing:-.02em;
+  color:var(--text);margin-bottom:16px;
+}
+.hero-title em{font-style:normal;color:var(--gold)}
+.hero-sub{
+  font-size:clamp(14px,2vw,17px);color:var(--muted);
+  line-height:1.75;max-width:580px;margin-bottom:32px;
+  font-family:var(--display);font-weight:400;
+}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat-num{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--text)}
+.stat-label{font-size:11px;color:var(--muted);letter-spacing:.05em;font-family:var(--mono)}
+.controls-wrap{
+  position:sticky;top:56px;z-index:90;
+  background:rgba(9,9,11,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:10px clamp(16px,4vw,48px);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:300px}
+.search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--dim);pointer-events:none}
+.search-input{
+  width:100%;background:var(--surface2);
+  border:1px solid var(--border);border-radius:4px;
+  padding:7px 10px 7px 30px;
+  font-family:var(--mono);font-size:11px;color:var(--text);
+  outline:none;transition:border .15s;
+}
+.search-input:focus{border-color:var(--border2)}
+.search-input::placeholder{color:var(--dim)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.f-btn{
+  font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 11px;border-radius:99px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .12s;
+}
+.f-btn:hover{border-color:var(--border2);color:var(--text)}
+.f-btn.on-all{border-color:var(--border2);color:var(--text);background:var(--surface2)}
+.f-btn.on-tech{border-color:var(--tech);color:var(--tech);background:rgba(123,110,246,.1)}
+.f-btn.on-collapse{border-color:var(--col);color:var(--col);background:rgba(224,82,82,.1)}
+.f-btn.on-bubble{border-color:var(--bub);color:var(--bub);background:rgba(232,154,60,.1)}
+.f-btn.on-regulation{border-color:var(--reg);color:var(--reg);background:rgba(78,168,222,.1)}
+.f-btn.on-culture{border-color:var(--cul);color:var(--cul);background:rgba(82,199,138,.1)}
+.count-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:.06em;
+  padding:4px 9px;border-radius:99px;background:var(--surface2);
+  border:1px solid var(--border);color:var(--muted);margin-left:auto;
+}
+.main{
+  display:grid;
+  grid-template-columns:clamp(80px,8vw,120px) 1fr;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 clamp(16px,4vw,48px) 100px;
+  position:relative;z-index:1;
+}
+.main::before{
+  content:'';
+  position:absolute;
+  left:calc(clamp(16px,4vw,48px) + clamp(80px,8vw,120px) - 1px);
+  top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--border) 5%,var(--border) 95%,transparent);
+}
+.year-col{padding-top:32px}
+.year-anchor{
+  font-family:var(--mono);font-size:clamp(20px,2.5vw,28px);font-weight:500;
+  color:var(--dim);letter-spacing:-.02em;
+  padding-top:32px;padding-right:20px;
+  text-align:right;
+  position:sticky;top:110px;
+  transition:color .2s;
+}
+.year-anchor.active-year{color:var(--gold)}
+.events-col{padding:32px 0 0 clamp(16px,3vw,40px)}
+.era-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--gold);
+  padding:4px 10px;border:1px solid rgba(201,168,76,.25);
+  border-radius:99px;display:inline-block;margin-bottom:20px;
+  background:rgba(201,168,76,.06);
+}
+.event-card{
+  border:1px solid var(--border);border-radius:8px;
+  background:var(--surface);
+  margin-bottom:12px;overflow:hidden;
+  transition:border-color .15s,opacity .35s ease,transform .35s ease;
+  cursor:pointer;
+  opacity:0;transform:translateY(12px);
+}
+.event-card.visible{opacity:1;transform:translateY(0)}
+.event-card:hover{border-color:var(--border2)}
+.event-card.open{border-color:var(--border2)}
+.card-header{padding:16px 18px;display:flex;align-items:flex-start;gap:14px}
+.card-left{flex:1;min-width:0}
+.card-row1{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.cat-pip{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.cat-label-small{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.event-title{font-size:14px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:5px;font-family:var(--display)}
+.event-summary{font-size:12px;color:var(--muted);line-height:1.6;font-family:var(--display);font-weight:400}
+.card-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.imp-bar{display:flex;flex-direction:column;gap:2px}
+.imp-seg{width:3px;height:7px;border-radius:2px;background:var(--dim)}
+.imp-seg.lit{background:var(--text)}
+.chevron{font-size:12px;color:var(--dim);transition:transform .2s}
+.open .chevron{transform:rotate(180deg)}
+.card-detail{
+  display:none;
+  border-top:1px solid var(--border);
+  padding:20px 18px;
+  background:var(--surface2);
+}
+.open .card-detail{display:block}
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px 24px;margin-bottom:20px;
+}
+.d-block{}
+.d-label{font-family:var(--mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.d-val{font-size:12px;color:var(--muted);line-height:1.65;font-family:var(--display);font-weight:400}
+.d-val b{color:var(--text);font-weight:500}
+.people-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.person-tag{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:3px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.rpg-panel{border:1px solid rgba(123,110,246,.2);border-radius:6px;padding:14px 16px;background:rgba(123,110,246,.04)}
+.rpg-head{font-family:var(--mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--tech);margin-bottom:10px}
+.rpg-chips{display:flex;flex-wrap:wrap;gap:5px}
+.rpg-chip{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:3px;border:1px solid var(--border);background:var(--bg);color:var(--muted)}
+.rpg-chip.e{border-color:rgba(224,82,82,.3);color:var(--col);background:rgba(224,82,82,.06)}
+.rpg-chip.j{border-color:rgba(123,110,246,.3);color:var(--tech);background:rgba(123,110,246,.06)}
+.rpg-chip.s{border-color:rgba(82,199,138,.3);color:var(--cul);background:rgba(82,199,138,.06)}
+.chip-prefix{opacity:.5;margin-right:3px}
+.year-block{display:contents}
+.empty-state{padding:60px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim);display:none}
+footer{
+  border-top:1px solid var(--border);
+  padding:32px clamp(16px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+  position:relative;z-index:1;
+}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--dim)}
+.footer-note{font-size:11px;color:var(--dim);font-family:var(--mono)}
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:6px;padding:10px 20px;
+  font-family:var(--mono);font-size:11px;color:var(--text);
+  opacity:0;transition:all .25s;z-index:999;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:640px){
+  .main{grid-template-columns:56px 1fr}
+  .year-anchor{font-size:14px;padding-right:12px}
+  .hero-stats{gap:20px}
+}
+@media(max-width:480px){
+  .main{grid-template-columns:0 1fr}
+  .main::before{display:none}
+  .year-anchor{display:none}
+  .events-col{padding-left:0}
+  .era-label{margin-top:24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><span class="nav-logo-dot"></span>Crypto Chronicles</a>
+  <div class="nav-right">
+    <a href="index.html" class="lang-link">🇯🇵 日本語</a>
+    <button class="share-btn" onclick="copyLink()">🔗 Copy URL</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">A Complete History of Crypto · 2008–2024</div>
+  <h1 class="hero-title">The Crypto<br><em>Chronicles</em></h1>
+  <p class="hero-sub">From the genesis of Bitcoin to the institutional era. 40 defining events across technology, collapse, bubbles, regulation, and culture — the full 16-year story of crypto.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">40</span><span class="stat-label">Key Events</span></div>
+    <div class="stat"><span class="stat-num">16</span><span class="stat-label">Years of History</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Categories</span></div>
+    <div class="stat"><span class="stat-num">$3T</span><span class="stat-label">Peak Market Cap</span></div>
+  </div>
+</header>
+
+<div class="controls-wrap" id="controls">
+  <div class="search-wrap">
+    <span class="search-ico">⌕</span>
+    <input class="search-input" id="search" placeholder="Search events…" oninput="applyFilters()">
+  </div>
+  <div class="filters">
+    <button class="f-btn on-all" data-cat="all" onclick="setF('all',this)">ALL</button>
+    <button class="f-btn" data-cat="tech" onclick="setF('tech',this)">Technology</button>
+    <button class="f-btn" data-cat="collapse" onclick="setF('collapse',this)">Collapse</button>
+    <button class="f-btn" data-cat="bubble" onclick="setF('bubble',this)">Bubble</button>
+    <button class="f-btn" data-cat="regulation" onclick="setF('regulation',this)">Regulation</button>
+    <button class="f-btn" data-cat="culture" onclick="setF('culture',this)">Culture</button>
+  </div>
+  <span class="count-badge" id="count-badge">40 events</span>
+</div>
+
+<div class="main" id="main">
+  <div class="year-col" id="year-col"></div>
+  <div class="events-col" id="events-col"></div>
+</div>
+<div class="empty-state" id="empty">No events match your search.</div>
+
+<footer>
+  <span class="footer-copy">© 2024 Crypto Chronicles · Research-based factual record</span>
+  <span class="footer-note">For educational purposes only. Not financial advice.</span>
+</footer>
+<div class="toast" id="toast">Link copied to clipboard</div>
+
+<script>
+const CAT_COLOR={tech:'#7b6ef6',collapse:'#e05252',bubble:'#e89a3c',regulation:'#4ea8de',culture:'#52c78a'};
+const ERAS={
+  2008:'Genesis Era',2009:'Genesis Era',
+  2010:'Dawn Era',2011:'Dawn Era',2012:'Dawn Era',
+  2013:'Rise & Fall',2014:'Rise & Fall',
+  2015:'Deep Tech',2016:'Deep Tech',
+  2017:'Mania & Winter',2018:'Mania & Winter',
+  2019:'DeFi Revolution',2020:'DeFi Revolution',
+  2021:'The Peak',
+  2022:'The Great Collapse',
+  2023:'Institutionalization',2024:'Institutionalization'
+};
+
+const DB=[
+  {y:2008,cat:'tech',imp:5,name:'Bitcoin White Paper Published',
+   summary:"Satoshi Nakamoto releases 'Bitcoin: A Peer-to-Peer Electronic Cash System,' describing a method to transfer value without any central authority.",
+   bg:'Against the backdrop of the 2008 financial crisis, decades of cypherpunk ideology crystallized into a concrete technical proposal.',
+   result:'The concept of the blockchain was born. A foundation was laid that would generate a multi-trillion-dollar industry within a decade.',
+   impact:'The ideological and technical origin point of all cryptocurrencies. Distributed ledger technology (DLT) spread across every major industry.',
+   lesson:'"Code as law." The radical premise that trust can be encoded mathematically, eliminating the need for intermediaries.',
+   people:['Satoshi Nakamoto (identity unknown)','Hal Finney','Nick Szabo (attributed)'],
+   rpg:{e:['The Centralized Guardian','Keeper of the Banking System'],j:['Cipher Mage','Decentralist Revolutionary'],s:['Consensus Spell','Double-Spend Shield']}},
+
+  {y:2008,cat:'collapse',imp:4,name:'The Global Financial Crisis',
+   summary:"Lehman Brothers collapses. The world's trust in centralized financial systems reaches an all-time low.",
+   bg:'Subprime mortgage failures, opaque derivatives, and excessive leverage created a structural collapse. The Bitcoin genesis block would later be stamped with a headline mocking bank bailouts.',
+   result:'Governments bailed out major banks with public funds, reinforcing narratives of moral hazard and financial corruption.',
+   impact:"The direct social backdrop of Bitcoin's creation. It seeded demand for a system where no one gets bailed out — and no one gets to bail in.",
+   lesson:'Centralized finance is fragile from within. Opaque financial engineering accelerates collapse.',
+   people:['Hank Paulson (Treasury Secretary)','Ben Bernanke (Fed Chair)','Richard Fuld (Lehman CEO)'],
+   rpg:{e:['The Corrupt Financial Empire','The Invisible Debt Monster'],j:['The Bailout Recipient','The System Destroyer'],s:['Public Funds Shield','Moral Hazard Curse']}},
+
+  {y:2009,cat:'tech',imp:5,name:'Bitcoin Network Goes Live',
+   summary:'The genesis block is mined. Ten days later, the first Bitcoin transaction sends 10 BTC from Satoshi to Hal Finney.',
+   bg:'After the white paper, Satoshi and a small group of cryptographers refined and tested the implementation over several months.',
+   result:'A digital currency worked peer-to-peer for the first time in history. Its value was effectively zero.',
+   impact:'Proof that a decentralized network could actually run. Every blockchain since traces its lineage to this moment.',
+   lesson:'The power of shipping: turning theory into a running implementation. The first user matters enormously.',
+   people:['Satoshi Nakamoto','Hal Finney'],
+   rpg:{e:["The Skeptic's Wall",'The Valueless Curse'],j:['Genesis Miner','The First Believer'],s:['Genesis Block Forge','Network Summon']}},
+
+  {y:2010,cat:'culture',imp:4,name:'Bitcoin Pizza Day',
+   summary:'Laszlo Hanyecz pays 10,000 BTC for two pizzas — the first real-world Bitcoin transaction. Those coins are later worth hundreds of millions of dollars.',
+   bg:'Hanyecz posted on the Bitcoin forum offering to pay anyone who would order him pizza. A volunteer in Florida took the deal.',
+   result:'Bitcoin was assigned its first real-world monetary value (~$0.004 per BTC). The purchase became a permanent cultural landmark.',
+   impact:'Celebrated worldwide every May 22nd as Bitcoin Pizza Day. The ultimate lesson in early-stage valuation and the cost of spending early.',
+   lesson:'"Using it" is what makes something a currency. The first exchange of value is the hardest — and most important.',
+   people:['Laszlo Hanyecz (programmer)'],
+   rpg:{e:['The Illusion of Zero Value'],j:['The First Merchant','Value Alchemist'],s:['Value Ritual','Pizza Order (Legendary)']}},
+
+  {y:2010,cat:'bubble',imp:3,name:'Mt. Gox Exchange Launches',
+   summary:'A Magic: The Gathering card trading site is repurposed as a Bitcoin exchange and quickly becomes the dominant trading venue.',
+   bg:'Jed McCaleb recycled an existing domain. The improvised infrastructure would later prove catastrophically insecure.',
+   result:'Price discovery emerged for Bitcoin. Market participation grew rapidly.',
+   impact:'By 2013, Mt. Gox handled 70%+ of global Bitcoin volume — before its collapse in 2014 defined the concept of exchange risk.',
+   lesson:'Scale and architecture misalignment always ends in collapse. Infrastructure quality is existential.',
+   people:['Jed McCaleb (founder)','Mark Karpelès (successor CEO)'],
+   rpg:{e:['The Time Bomb of Shoddy Design'],j:['Exchange Proprietor'],s:['Liquidity Grant','Bridge of Trust (Fragile)']}},
+
+  {y:2011,cat:'collapse',imp:4,name:'Silk Road Opens',
+   summary:'An anonymous marketplace launches on the Tor network, using Bitcoin as its currency to trade illegal drugs and other contraband.',
+   bg:'Ross Ulbricht built it on libertarian ideology: a free market without government interference. Bitcoin\'s pseudonymity made it the natural payment rail.',
+   result:'FBI arrested Ulbricht in 2013, seizing ~170,000 BTC which was later auctioned. Ulbricht received a life sentence.',
+   impact:'Cemented Bitcoin\'s early reputation as a "criminal tool" in mainstream media. Simultaneously demonstrated its censorship-resistance in practice.',
+   lesson:'Technology is value-neutral. How it is used determines how society perceives it.',
+   people:['Ross Ulbricht (founder, life sentence)','Christopher Tarbell (FBI)'],
+   rpg:{e:['The Dark Market Lord','The Law Enforcer'],j:['Shadow Merchant','Crypto Hermit'],s:['Anonymization Fog','Onion Routing']}},
+
+  {y:2011,cat:'bubble',imp:3,name:'Bitcoin\'s First Bubble and Crash',
+   summary:'BTC surges from $1 to $32, then crashes back to $2. The first full bubble-and-crash cycle plays out in weeks.',
+   bg:'Media coverage of Silk Road drove sudden public interest. Capital flooded into Mt. Gox.',
+   result:'Early investors suffered major losses. Those who held through the crash developed conviction in Bitcoin\'s resilience.',
+   impact:'Established the fundamental crypto pattern: "surge → crash → resurrection." The original template for every bull-bear cycle since.',
+   lesson:'Speculative mania always reverses. But the death of the price is not the death of the network.',
+   people:['Mt. Gox (Mark Karpelès)'],
+   rpg:{e:['The Speculation Demon','The Crash Wave'],j:['Early Speculator','HODL Warrior'],s:['Iron HODL','Bottom Detector']}},
+
+  {y:2012,cat:'tech',imp:4,name:'Bitcoin Halving #1',
+   summary:'At block 210,000, the mining reward is cut from 50 BTC to 25 BTC. The first programmatic scarcity event executes automatically.',
+   bg:'Encoded by Satoshi to cap total supply at 21 million BTC. Runs autonomously every ~4 years.',
+   result:'Miner revenue halved, but the network kept running. Price appreciated significantly over the following year.',
+   impact:'Established the "halving cycle" theory: each halving precedes a major price rally. Every subsequent halving is now a global market event.',
+   lesson:'"Predictable supply reduction" can function as a value guarantee. Programmatic scarcity is credible scarcity.',
+   people:['Unknown (automatic protocol execution)'],
+   rpg:{e:['The Inflation Overlord'],j:['The Miner','Scarcity Guardian'],s:['Halving Ritual','Supply Control Spell']}},
+
+  {y:2012,cat:'bubble',imp:3,name:'Coinbase Founded',
+   summary:'Brian Armstrong founds Coinbase, building the first major exchange designed for mainstream consumers. It later goes public on Nasdaq.',
+   bg:'Bitcoin had no easy on-ramp for ordinary people. Y Combinator backed the seed round.',
+   result:'Consumer onboarding for crypto improved dramatically. Coinbase became the only major exchange to prioritize regulatory compliance.',
+   impact:'Proved that compliance is a competitive advantage. The 2021 Nasdaq direct listing (COIN) was a watershed moment for institutional crypto.',
+   lesson:'Ease of use determines adoption speed. Regulatory cooperation builds long-term trust.',
+   people:['Brian Armstrong (CEO)','Fred Ehrsam (co-founder)'],
+   rpg:{e:['The Complexity Wall','The KYC Labyrinth'],j:['The Adoption Evangelist'],s:['Onboarding Spell','Regulatory Shield']}},
+
+  {y:2013,cat:'bubble',imp:4,name:'Bitcoin Breaks $1,000',
+   summary:'Explosive Chinese adoption and growing institutional interest push BTC above $1,000 for the first time.',
+   bg:'Chinese exchanges like BTC China surged. FinCEN guidance in the US — intended to regulate — paradoxically drew more attention.',
+   result:'Price hit $1,163 then crashed 50%+ within weeks following Chinese regulatory announcements.',
+   impact:'"Digital gold" entered the mainstream lexicon. Media coverage multiplied and general awareness of Bitcoin surged for the first time.',
+   lesson:'Price milestones are psychologically significant. Media and price amplify each other in feedback loops.',
+   people:['Unknown (market)','Bobby Lee (BTC China CEO)'],
+   rpg:{e:['The $1,000 Wall'],j:['Digital Gold Miner'],s:['Price Breakthrough','Media Summon']}},
+
+  {y:2013,cat:'regulation',imp:4,name:'Cyprus Financial Crisis & Bitcoin',
+   summary:'The EU forces Cyprus to impose a bail-in on bank deposits above €100,000. Bitcoin demand spikes as capital flees the banking system.',
+   bg:'The Cypriot government, under EU rescue conditions, forcibly seized a percentage of bank deposits — an unprecedented act in a developed democracy.',
+   result:'Bitcoin trading volume in Cyprus surged. International media ran stories framing BTC as a "capital refuge."',
+   impact:'"A government can confiscate your deposits." This real-world proof of concept became a foundational argument for Bitcoin\'s value proposition.',
+   lesson:'Even sovereign states can seize private wealth. Mathematically enforced asset ownership has real-world value.',
+   people:['Nicos Anastasiades (Cyprus President)','EU / ECB / IMF (Troika)'],
+   rpg:{e:['State Asset Seizure','The Troika\'s Chains'],j:['Capital Refugee','Sovereign Shield Warrior'],s:['Asset Transparency','Unseizable Shield']}},
+
+  {y:2013,cat:'regulation',imp:3,name:'China Bans Bitcoin for Financial Institutions',
+   summary:'The People\'s Bank of China prohibits financial institutions from handling Bitcoin. Price drops 50%+ within three weeks.',
+   bg:'The Chinese government grew alarmed by retail speculation and Bitcoin\'s potential as a capital flight vehicle.',
+   result:'Chinese exchanges halted CNY direct trading. Chinese renminbi liquidity evaporated from global markets.',
+   impact:'"China risk" became a permanent fixture in crypto market vocabulary. Chinese regulatory moves have rattled global markets ever since.',
+   lesson:'A single country\'s regulatory action can move global markets. Decentralized systems still have centralized price dependencies.',
+   people:['People\'s Bank of China (PBOC)'],
+   rpg:{e:['The Great Firewall','The Central Bank Sentinel'],j:['Regulatory Evader'],s:['Firewall Break','P2P Trade']}},
+
+  {y:2014,cat:'collapse',imp:5,name:'Mt. Gox Collapse',
+   summary:'The world\'s largest Bitcoin exchange files for bankruptcy after losing 850,000 BTC (~$480M) to hackers. Customer funds vanish.',
+   bg:'Chronic security negligence and lack of internal controls under Mark Karpelès. The hack is believed to have progressed gradually over years.',
+   result:'850,000 BTC disappeared (~460,000 later recovered). Customer assets were frozen. Bitcoin dropped ~80%.',
+   impact:'Coined the maxim: "Not your keys, not your coins." Spawned the hardware wallet industry. Established the concept of exchange risk permanently.',
+   lesson:'Self-custody is the only reliable custody. Centralized storage is a single point of failure.',
+   people:['Mark Karpelès (CEO, later convicted)','Jed McCaleb (founder, had sold)'],
+   rpg:{e:['The Rot Within','The Hacker Syndicate'],j:['Wallet Guardian','Security Paladin'],s:['Private Key Defense','Cold Wallet Seal']}},
+
+  {y:2014,cat:'tech',imp:5,name:'Ethereum Announced',
+   summary:'19-year-old Vitalik Buterin publishes the Ethereum white paper, proposing a "programmable blockchain" that can run any smart contract.',
+   bg:'Buterin recognized the limits of Bitcoin\'s scripting language and envisioned a general-purpose platform. Gavin Wood co-designed the protocol.',
+   result:'A 2014 crowdsale raised ~$18M. Mainnet launched in 2015.',
+   impact:'The invention of the smart contract as a practical primitive. The technical foundation for DeFi, NFTs, DAOs, and all of Web3.',
+   lesson:'"Constraints" in existing systems are opportunities for new platforms. A 19-year-old\'s vision reshaped an industry.',
+   people:['Vitalik Buterin','Gavin Wood','Joseph Lubin','Charles Hoskinson'],
+   rpg:{e:['Bitcoin Maximalists','The Scripting Wall'],j:['Smart Contract Sage','dApp Architect'],s:['Smart Contract Cast','EVM Boot']}},
+
+  {y:2015,cat:'tech',imp:5,name:'Ethereum Mainnet Launches',
+   summary:'The Ethereum blockchain goes live. For the first time, programmable money runs on a public blockchain at scale.',
+   bg:'After more than a year of testnets, the "Frontier" release made smart contracts publicly deployable.',
+   result:'A general-purpose platform for decentralized applications was born. ERC-20 tokens would power the 2017 ICO boom.',
+   impact:'Proved that a world beyond Bitcoin exists. Platforms create ecosystems — Ethereum is the clearest proof.',
+   lesson:'General-purpose design can outperform specialized design at scale. The platform becomes more valuable than any single app on it.',
+   people:['Vitalik Buterin','Ethereum Foundation'],
+   rpg:{e:['The Wall of Specialization'],j:['dApp Architect'],s:['Universal Magic Circle','ERC Summon']}},
+
+  {y:2016,cat:'collapse',imp:4,name:'The DAO Hack',
+   summary:'The DAO — the largest smart contract ever deployed — is drained of 3.6M ETH (~$60M) via a reentrancy attack. Ethereum splits in two.',
+   bg:'The DAO raised $150M+ in a crowdfunding campaign. A known code vulnerability had been left unpatched.',
+   result:'The Ethereum community executed a controversial hard fork, creating ETH and ETC (Ethereum Classic).',
+   impact:'The foundational debate: "Code is Law" vs. "Community is Law." The split crystallized opposing philosophies. Smart contract auditing became an industry.',
+   lesson:'Immutability is a double-edged sword. Never deploy unaudited code holding significant funds.',
+   people:['Vitalik Buterin','Stephan Tual (The DAO)','Attacker (unknown)'],
+   rpg:{e:['The Reentrancy Ghost','The Code Defect Demon'],j:['Smart Contract Auditor','The Fork Mage'],s:['Audit Eye','Emergency Hard Fork']}},
+
+  {y:2016,cat:'tech',imp:4,name:'Bitcoin Halving #2',
+   summary:'At block 420,000, the mining reward drops from 25 BTC to 12.5 BTC. The 2017 bull run follows.',
+   bg:'Automatic protocol execution. Comparisons with the first halving reinforced belief in the four-year cycle.',
+   result:'No immediate price impact, but BTC reached nearly $20,000 the following year.',
+   impact:'The halving-to-rally thesis gained its second data point. Stock-to-Flow and other scarcity models gained traction.',
+   lesson:'Supply constraint effects are delayed. Markets price in scarcity on long cycles, not immediately.',
+   people:['Unknown (automatic protocol execution)'],
+   rpg:{e:['The Echo of Inflation'],j:['Scarcity Sentinel'],s:['Second Halving','Four-Year Cycle Prophecy']}},
+
+  {y:2016,cat:'collapse',imp:3,name:'Bitfinex Hack',
+   summary:'Approximately 120,000 BTC (~$72M) is stolen from major exchange Bitfinex through a multisig wallet implementation flaw.',
+   bg:'Despite prior incidents in the industry, security measures were inadequate. The multisig setup was exploited directly.',
+   result:'Bitfinex issued "BFX tokens" to distribute losses across all users. All debts were eventually repaid.',
+   impact:'US DOJ recovered a large portion of the stolen assets in 2022. Exchange security standards across the industry were overhauled.',
+   lesson:'Organizations holding large assets must invest proportionally in security. Novel liability models can work under the right conditions.',
+   people:['Bitfinex management','Ilya Lichtenstein & Heather Morgan (arrested 2022)'],
+   rpg:{e:['The Multisig Thief'],j:['Exchange Defender','Asset Recovery Agent'],s:['Multisig Lock','Evidence Trail Eye']}},
+
+  {y:2017,cat:'bubble',imp:5,name:'The ICO Boom',
+   summary:'Initial Coin Offerings explode. Projects raise tens of millions from white papers alone. Fraud and innovation coexist at scale.',
+   bg:"Ethereum's smart contracts made token issuance trivially easy. A regulatory vacuum meant anyone could raise capital globally with no accountability.",
+   result:'Hundreds of billions raised across 2017–18. The vast majority of projects either vanished or became enforcement targets.',
+   impact:'Directly triggered aggressive SEC crackdowns. Introduced "token-based fundraising" as a real model — though nearly all tokens were later deemed unregistered securities.',
+   lesson:'Regulatory vacuums are temporary. At scale, fraud and innovation are indistinguishable until it\'s too late.',
+   people:['Multiple projects (unnamed)','SEC (intervening regulator)'],
+   rpg:{e:['The Rug Pull Artist','The Regulatory Iron Fist'],j:['Token Alchemist','White Paper Wizard'],s:['ERC-20 Summon','IDO Incantation']}},
+
+  {y:2017,cat:'bubble',imp:5,name:'Bitcoin Hits $20,000',
+   summary:'On December 17th, BTC reaches $19,783 — an all-time high. Every major media outlet covers the "cryptocurrency bubble."',
+   bg:'The ICO boom, CME and CBOE launching Bitcoin futures, and growing institutional curiosity converged into a historic mania.',
+   result:'The crash began within days. By year-end 2018, BTC had fallen to ~$3,000.',
+   impact:'More retail investors bought crypto in 2017 than all prior years combined. This ATH stood for three years. FOMO as a force was fully established.',
+   lesson:'Futures listings drive short-term spikes but long-term price discovery. FOMO reliably produces the worst entry points.',
+   people:['Market participants (collective)','CME Group','CBOE'],
+   rpg:{e:['FOMO — The Opportunity Ghost','The Bubble Crash Wave'],j:['$20K Summit Climber'],s:['Top Chaser Curse','Futures Hedge']}},
+
+  {y:2017,cat:'tech',imp:3,name:'Bitcoin Cash Hard Fork',
+   summary:'A block-size dispute splits Bitcoin into two chains: Bitcoin (BTC) and Bitcoin Cash (BCH).',
+   bg:'"Big blockers" (BCH side) wanted larger blocks to lower fees. "Small blockers" (BTC side) preferred SegWit and Layer 2. Neither side would yield.',
+   result:'Existing BTC holders received equal BCH at the fork. Both chains continued operating.',
+   impact:'The first major "fork war." It demonstrated that ideological splits manifest as literal chain splits — and that communities, not protocols, are the real battleground.',
+   lesson:'Scaling without community consensus produces splits. Technical arguments are always political arguments.',
+   people:['Roger Ver (BCH)','Adam Back (BTC)','Craig Wright (BCH)'],
+   rpg:{e:['The Internal Schism Demon'],j:['Fork Warrior','Chain Splitter'],s:['Hard Fork Rift','Block Expansion']}},
+
+  {y:2017,cat:'culture',imp:3,name:'CryptoKitties — The Origin of NFTs',
+   summary:'A game where players breed and trade digital cats on Ethereum congests the entire network. Some cats sell for hundreds of thousands of dollars.',
+   bg:'Dapper Labs built the game on the ERC-721 standard — the first large-scale NFT protocol.',
+   result:'The Ethereum network slowed to a crawl. Gas fees spiked. A single CryptoKitty sold for ~$170,000.',
+   impact:'The conceptual and technical origin of the NFT movement. The first proof that digital items could carry real ownership and monetary value.',
+   lesson:'Games expose the limits and possibilities of infrastructure simultaneously. Scalability was proved to be a real constraint.',
+   people:['Dapper Labs (Roham Gharegozleh, CEO)'],
+   rpg:{e:['The Gas Fee Tyrant','The Network Congestion Beast'],j:['NFT Breeder'],s:['ERC-721 Summon','Rare Cat Appraisal']}},
+
+  {y:2018,cat:'bubble',imp:4,name:'The Great Crash — Crypto Winter Begins',
+   summary:"BTC falls 85% from ~$20,000 to ~$3,000. Altcoins lose 95%+. Hundreds of projects vanish. The industry enters 'Crypto Winter.'",
+   bg:'ICO fraud, regulatory fear, absence of institutional infrastructure, and pure speculative excess compounded into structural collapse.',
+   result:'Trillions in paper value evaporated. The majority of 2017 ICOs disappeared. Surviving projects were battle-tested.',
+   impact:'Established "Crypto Winter" as a recurring phenomenon. Projects that survived went on to lead the next cycle. Pruning strengthened the ecosystem.',
+   lesson:'Winters always follow manias. But networks with genuine utility do not die — they hibernate.',
+   people:['Market participants (collective)'],
+   rpg:{e:['The Crypto Winter General','The Liquidation Storm'],j:['The Survivor','HODL Monk'],s:['Endurance HODL','Accumulation at the Bottom']}},
+
+  {y:2018,cat:'regulation',imp:3,name:'Global ICO Crackdowns',
+   summary:'The SEC, China, and the EU move against ICOs as unregistered securities. Dozens of projects face enforcement actions.',
+   bg:'The 2017 ICO boom left a trail of fraud and losses. Regulators had no choice but to act.',
+   result:'ICO volumes collapsed. Compliant alternatives (IEO, SAFT) emerged as substitutes.',
+   impact:'"Crypto cannot exist outside regulation" became an industry axiom. Compliance became a prerequisite for survival.',
+   lesson:'Regulatory vacuums are temporary. The bigger you grow, the brighter the spotlight on you.',
+   people:['SEC (Jay Clayton, Chair)','PBoC','EU regulators'],
+   rpg:{e:['The Regulatory Hammer','The Compliance Labyrinth'],j:['Regulatory Compliance Mage','Securities Lawyer'],s:['Howey Test Bypass','Regulatory Conversion']}},
+
+  {y:2019,cat:'tech',imp:4,name:'DeFi Emerges: Compound & Uniswap',
+   summary:'Compound (decentralized lending) and Uniswap (decentralized exchange) launch, laying the foundations for the DeFi ecosystem.',
+   bg:'Smart contracts finally made it possible to replicate core banking functions — lending and exchange — without any central operator.',
+   result:'TVL started in the millions. The infrastructure was quietly being built for the 2020 explosion.',
+   impact:'The direct predecessors of DeFi Summer. Yield farming, liquidity mining, and the entire DeFi economy emerged from these two protocols.',
+   lesson:'Core financial functions (lending, trading) can be fully encoded in open contracts. Simplicity of design determines how far a protocol spreads.',
+   people:['Robert Leshner (Compound)','Hayden Adams (Uniswap)'],
+   rpg:{e:['The Central Bank Gatekeeper'],j:['Liquidity Provider','AMM Mage'],s:['Liquidity Pool Deploy','Yield Farming Begin']}},
+
+  {y:2019,cat:'regulation',imp:4,name:'Facebook Announces Libra',
+   summary:"Facebook reveals plans for a global stablecoin called Libra. Governments and central banks worldwide mobilize in opposition.",
+   bg:'A company with 3 billion users proposing to issue its own currency triggered an existential alarm for monetary sovereignty.',
+   result:'Congressional hearings followed. Regulatory pressure gutted the project. Facebook shut it down entirely in 2022.',
+   impact:'Directly accelerated CBDC development worldwide. The episode proved that private currency issuance at scale would not be tolerated.',
+   lesson:'Challenging the monetary order invites the full force of the state. Private currency issuance is a political act, not just a technical one.',
+   people:['Mark Zuckerberg','David Marcus (Libra lead)','Janet Yellen (critical)'],
+   rpg:{e:['The Currency Sovereign','The G7 Firewall'],j:['Tech Empire Currency Issuer'],s:['3 Billion User Network','Regulatory Pressure Nullify (Failed)']}},
+
+  {y:2020,cat:'bubble',imp:5,name:'DeFi Summer',
+   summary:"Compound's COMP token distribution ignites yield farming. DeFi TVL rockets from $1B to $10B+. The 'DeFi Summer' era begins.",
+   bg:'Pandemic-era near-zero interest rates drove yield-hungry capital into DeFi. Liquidity mining created powerful new growth loops.',
+   result:'Uniswap, Aave, MakerDAO, and SushiSwap exploded in usage. The UNI airdrop introduced millions to on-chain governance.',
+   impact:"Real-world proof that 'bankless finance' works at scale. The direct precursor to the 2021 NFT/Web3 mega-bull run.",
+   lesson:'Incentive design determines protocol growth velocity. Liquidity is the most powerful competitive moat in crypto.',
+   people:['Robert Leshner','Hayden Adams','Stani Kulechov (Aave)','Rune Christensen (MakerDAO)'],
+   rpg:{e:['The CEX Monopoly Wall'],j:['Yield Farmer','AMM Designer'],s:['Yield Farming','Liquidity Mining','Airdrop Harvest']}},
+
+  {y:2020,cat:'tech',imp:4,name:'Bitcoin Halving #3',
+   summary:'At block 630,000, the reward drops from 12.5 to 6.25 BTC. Bitcoin hits $69,000 the following year.',
+   bg:'Automatic protocol execution. Coincided with pandemic-era quantitative easing, amplifying demand for "digital gold."',
+   result:'Short-term price effect was modest. BTC reached $69,000 in November 2021.',
+   impact:'Three consecutive halvings, three subsequent all-time highs. The S2F model gained peak credibility before eventually breaking down.',
+   lesson:'Supply constraint effects are delayed by 12–18 months. Macro environment amplifies or dampens the cycle.',
+   people:['Unknown (automatic)','PlanB (S2F model)'],
+   rpg:{e:['The Inflation Overlord'],j:['S2F Prophet'],s:['Third Halving','Supply Depletion Prophecy']}},
+
+  {y:2020,cat:'bubble',imp:3,name:'MicroStrategy Buys Bitcoin as Treasury Reserve',
+   summary:'MicroStrategy issues corporate debt to buy Bitcoin, creating the first institutional corporate treasury allocation to BTC.',
+   bg:'CEO Michael Saylor framed BTC as a hedge against dollar debasement, calling it "digital gold" in public and corporate filings.',
+   result:'MicroStrategy accumulated tens of thousands of BTC. Tesla followed in 2021 with a $1.5B purchase.',
+   impact:'Established the corporate BTC treasury model. Opened the door for institutional balance sheet adoption and accelerated the "Bitcoin as an asset class" narrative.',
+   lesson:'Corporate treasury strategy can encompass crypto assets. The CFO-level evaluation of BTC began here.',
+   people:['Michael Saylor (MicroStrategy CEO)','Elon Musk (Tesla, later sold)'],
+   rpg:{e:['The Dollar Inflation Eroder'],j:['Corporate HODL Strategist'],s:['Balance Sheet Conversion','Institutional Capital Summon']}},
+
+  {y:2021,cat:'bubble',imp:5,name:'Bitcoin Hits $69,000 — All-Time High',
+   summary:'On November 10th, BTC reaches $69,044 — a new all-time high. Total crypto market cap exceeds $3 trillion.',
+   bg:'Halving effects, institutional entry, COVID stimulus money, ETF anticipation, and the DeFi/NFT boom converged simultaneously.',
+   result:'ETH, SOL, BNB and most major alts hit simultaneous all-time highs. NFTs and DeFi entered the mainstream.',
+   impact:'Stood as the ATH until 2024. Marked the moment when institutional investors formally classified crypto as an asset class.',
+   lesson:'Multiple aligned bull factors create the largest bubbles. It is nearly impossible to identify an all-time high in real time.',
+   people:['Market (collective)','BlackRock','Fidelity'],
+   rpg:{e:['FOMO Ghost (Returns)','The Top-Buyer Curse'],j:['Summit Climber'],s:['$3T Market Cap Reached','Multi-Factor Bubble']}},
+
+  {y:2021,cat:'bubble',imp:4,name:'The NFT Boom — Beeple & BAYC',
+   summary:"Beeple's NFT artwork sells for $69.3M at Christie's. Bored Ape Yacht Club launches. NFTs reach mainstream consciousness.",
+   bg:"Ethereum's mainstream visibility, celebrity adoption, and the concept of 'digital ownership' created unprecedented demand.",
+   result:'NFT market volume hit ~$25B in 2021. Most pieces became nearly worthless by 2022.',
+   impact:'Proved the concept of provable digital ownership globally. Opened applications in art, gaming, ticketing, and identity.',
+   lesson:'The separation of speculative value from cultural value is extremely difficult in real time. Ownership proof ≠ value guarantee.',
+   people:['Beeple (Mike Winkelmann)','Yuga Labs (BAYC)','OpenSea'],
+   rpg:{e:['The Worthless JPEG Illusion','The Rug Pull Artist'],j:['NFT Appraiser','Digital Artist'],s:['Scarcity Certificate','Automatic Royalty Collection']}},
+
+  {y:2021,cat:'regulation',imp:5,name:'El Salvador Adopts Bitcoin as Legal Tender',
+   summary:'El Salvador becomes the first country in the world to make Bitcoin official legal tender. Citizens receive $30 in BTC via the Chivo wallet.',
+   bg:'President Nayib Bukele cited remittance cost reduction and financial inclusion for the unbanked as primary motivations.',
+   result:'The IMF threatened to withhold loans unless the policy was reversed. In 2024, Bitcoin\'s mandatory legal tender status was downgraded to optional.',
+   impact:'The first nation-state Bitcoin adoption experiment. Framed the debate over developing-country monetary sovereignty.',
+   lesson:'Bitcoin adoption at the state level entangles politics, economics, and international diplomacy simultaneously.',
+   people:['Nayib Bukele (President)','IMF','International critics'],
+   rpg:{e:["The IMF's Chains",'The Dollar Hegemony Guardian'],j:['Bitcoin State Leader'],s:['Legal Tender Declaration','Chivo Wallet Distribution']}},
+
+  {y:2021,cat:'regulation',imp:4,name:'China Bans Crypto Entirely',
+   summary:'China prohibits all crypto trading and mining. Over 50% of global Bitcoin hashrate disappears overnight.',
+   bg:"Capital flight prevention, energy consumption concerns, and the need to push the digital yuan (CBDC) drove the decision.",
+   result:'Mining migrated to the US, Kazakhstan, and Russia. Global hashrate fell ~50% then fully recovered within months.',
+   impact:"Proven: a single nation's ban cannot kill Bitcoin. Geographic decentralization of mining was dramatically accelerated.",
+   lesson:'Decentralized networks are ban-resistant. But geopolitical risk exerts enormous short-term price pressure.',
+   people:['Chinese Communist Party','People\'s Bank of China'],
+   rpg:{e:['The Great Wall Edict','The Authoritarian Chain'],j:['Censorship Resistance Prover'],s:['Hashrate Distribution','Censorship Resistance Proof']}},
+
+  {y:2021,cat:'culture',imp:3,name:'Play-to-Earn Boom — Axie Infinity',
+   summary:'Axie Infinity explodes in Southeast Asia. Players in the Philippines earn more from the game than from minimum-wage jobs.',
+   bg:"COVID-19 unemployment converged with an NFT game economy that exceeded local minimum wages in developing countries. 'Scholarships' emerged where guilds lent NFTs to players for a revenue share.",
+   result:'Daily trading volume in Axie peaked in the hundreds of millions. When tokens collapsed in 2022, many players lost real income.',
+   impact:"First real-world proof of a 'play-to-earn' economy, and of its structural limits. The origin of GameFi and Web3 gaming.",
+   lesson:'P2E economies depend heavily on new entrants and are structurally Ponzilike without genuine fun. Sustainable game economics require intrinsic entertainment value.',
+   people:['Sky Mavis (Trung Nguyen, CEO)'],
+   rpg:{e:['The Ponzi Game Structure','The Ronin Bridge Hacker'],j:['P2E Player','Guild Scholar'],s:['Play-to-Earn','NFT Character Breeding']}},
+
+  {y:2022,cat:'collapse',imp:5,name:'LUNA/UST Collapse — The Terra Shock',
+   summary:'Algorithmic stablecoin UST de-pegs from $1. LUNA drops 99.99% in days. ~$60B in value evaporates.',
+   bg:"Do Kwon designed LUNA and UST as a self-reinforcing stability mechanism. It had no resilience against large coordinated withdrawals.",
+   result:'LUNA fell from $80 to fractions of a cent. Hundreds of thousands of investors lost nearly everything.',
+   impact:'"Algorithmic stablecoins are dangerous" became an industry axiom. Stablecoin regulation accelerated globally. Three Arrows Capital collapsed in the contagion.',
+   lesson:'Design flaws detonate the moment market confidence breaks. "Algorithmic stability" was always an untested assumption at scale.',
+   people:['Do Kwon (founder, arrested)','Terraform Labs','Three Arrows Capital'],
+   rpg:{e:['The De-Peg Demon','The Death Spiral'],j:['Stablecoin Designer (Failed)','The Risk Warner'],s:['De-Peg Curse','Death Spiral Summon (Forbidden)']}},
+
+  {y:2022,cat:'collapse',imp:5,name:'FTX Collapse — The SBF Scandal',
+   summary:'FTX, the world\'s second-largest exchange, collapses within days after revelations that Sam Bankman-Fried had funneled customer funds to his trading firm.',
+   bg:'SBF secretly transferred FTX customer assets to Alameda Research, his hedge fund. A CoinDesk report triggered a bank run. Binance\'s CZ pulled the trigger.',
+   result:'3M+ customers had funds frozen. BTC crashed to $16,000. SBF was convicted of fraud and sentenced to 25 years in prison.',
+   impact:'The largest crypto scandal since Mt. Gox. Drove unprecedented regulatory urgency in Congress. Triggered a mass migration back to self-custody.',
+   lesson:'Charismatic founders should not be trusted without verification. "Effective altruism" branding concealed catastrophic fraud. Proof-of-Reserves is essential.',
+   people:['Sam Bankman-Fried (CEO, convicted)','Caroline Ellison (plea deal)','CZ Binance (rival)'],
+   rpg:{e:['The Fraudulent Empire','The Whistleblower Flame'],j:['Crypto Attorney','Proof-of-Reserves Auditor'],s:['Unauthorized Transfer (Forbidden)','Proof-of-Reserves Display']}},
+
+  {y:2022,cat:'tech',imp:5,name:'Ethereum: The Merge (PoW → PoS)',
+   summary:'Ethereum transitions from Proof-of-Work to Proof-of-Stake. Energy consumption drops 99.9%. Miners become obsolete.',
+   bg:"Bitcoin's energy consumption had drawn years of criticism. The Merge was also preparation for Ethereum's long-term scalability roadmap.",
+   result:'Validators replaced miners. ETH\'s issuance rate dropped dramatically, making it periodically deflationary.',
+   impact:'The definitive answer to crypto\'s environmental criticism. ETH gained significant credibility with ESG-focused institutional investors.',
+   lesson:'Fundamental changes to large-scale systems are possible. The key is years of incremental implementation and broad community consensus.',
+   people:['Vitalik Buterin','Ethereum Foundation','Danny Ryan (technical lead)'],
+   rpg:{e:['The Energy Glutton','The PoW Miner Resistance'],j:['Validator (Staker)'],s:['Execute The Merge','99.9% Energy Reduction']}},
+
+  {y:2022,cat:'bubble',imp:4,name:'Crypto Winter 2022',
+   summary:'FTX, LUNA, and the Federal Reserve\'s rate hikes converge. Total crypto market cap falls 70%+ from its peak.',
+   bg:'The Fed\'s rapid rate hikes triggered a broader risk-off environment. LUNA and FTX bankruptcies created a cascade of insolvencies across CeFi lenders.',
+   result:'BTC fell from $69K to ~$15K. Three Arrows Capital, Celsius, and BlockFi all collapsed. Millions of users lost funds.',
+   impact:'Trust in CeFi (centralized crypto finance) collapsed. DeFi\'s smart contract model was seen as comparatively trustworthy.',
+   lesson:'Yields that seem too good are. The difference in risk between CeFi and DeFi became viscerally real in 2022.',
+   people:['Three Arrows Capital (Su Zhu, Kyle Davies)','Celsius (Alex Mashinsky)','BlockFi'],
+   rpg:{e:['Winter General 2022','The Cascade Bankruptcy Inferno'],j:['The Survivor','Risk Manager'],s:['Self-Custody','Escape to DeFi']}},
+
+  {y:2023,cat:'regulation',imp:4,name:'SEC Sues Coinbase & Binance',
+   summary:'The SEC files suit against both Binance and Coinbase, claiming they operated as unregistered securities exchanges.',
+   bg:'Chair Gary Gensler maintained that existing laws already covered crypto. The post-FTX regulatory climate gave political cover for aggressive action.',
+   result:'Both companies fought back in court. Short-term market disruption was offset by growing ETF optimism.',
+   impact:"The push for legal clarity on 'which tokens are securities' intensified. Industry compliance infrastructure accelerated.",
+   lesson:"Regulatory ambiguity stifles innovation. The question of whether to fight or cooperate with regulators defines companies' fates.",
+   people:['Gary Gensler (SEC Chair)','Brian Armstrong (Coinbase CEO)','CZ (Binance, later resigned)'],
+   rpg:{e:['The Regulatory Iron Fist','The Howey Test Magic Circle'],j:['Compliance Wizard','Lobbyist'],s:['Securities Classification Dodge','Regulatory Dialogue']}},
+
+  {y:2023,cat:'bubble',imp:4,name:'Bitcoin ETF Application Wave',
+   summary:'BlackRock, Fidelity, and a dozen other major asset managers file for spot Bitcoin ETFs, signaling a historic shift in institutional appetite.',
+   bg:'Post-FTX, institutions wanted regulated exposure without custody risk. BlackRock\'s filing unlocked a competitive rush.',
+   result:'Market recovered on anticipation. BTC more than doubled during 2023.',
+   impact:"The clearest signal that Wall Street wanted 'official' crypto access. The prelude to January 2024's approval.",
+   lesson:'Regulatory progress and market prices move together. A major player\'s entry application is a powerful market signal.',
+   people:['Larry Fink (BlackRock CEO)','Gary Gensler (SEC)','ARK Invest'],
+   rpg:{e:['The ETF Approval Wall','The SEC Gatekeeper'],j:['Institutional Advance Scout'],s:['Institutional Capital Summon (Preparation)','SEC Negotiation']}},
+
+  {y:2024,cat:'regulation',imp:5,name:'Spot Bitcoin ETF Approved in the US',
+   summary:'On January 10th, the SEC approves 11 spot Bitcoin ETFs from BlackRock and others. ~$4.6B flows in on day one.',
+   bg:"Grayscale's 2023 court victory removed the SEC's last justification for refusal.",
+   result:"BlackRock's iShares Bitcoin ETF hit $10B AUM faster than any ETF in history. Traditional financial infrastructure formally connected to Bitcoin.",
+   impact:'Wall Street officially acknowledged Bitcoin as an investable asset. The door opened for pension funds and sovereign wealth funds.',
+   lesson:'Legal and institutional infrastructure development unlocks massive capital pools. Long regulatory battles can be won.',
+   people:['Gary Gensler (signed approval)','Larry Fink (BlackRock)','Barry Silbert (Grayscale, won the lawsuit)'],
+   rpg:{e:['The Last Institutional Wall'],j:['ETF Approval Herald'],s:['Wall Street Connection','Institutional Capital Inflow']}},
+
+  {y:2024,cat:'tech',imp:4,name:'Bitcoin Halving #4',
+   summary:'At block 840,000 on April 20th, the mining reward halves from 6.25 to 3.125 BTC. Over 97% of all Bitcoin has now been mined.',
+   bg:'Automatic protocol execution. The timing — immediately after the ETF approval — drew unprecedented attention.',
+   result:'Short-term price impact was modest. As of late 2024, BTC hit new all-time highs above $100,000.',
+   impact:'Fourth halving. If the three-cycle pattern holds, 2025 should see further highs. Supply is now extremely constrained.',
+   lesson:'Programmatic scarcity reinforcement. The macro environment determines the magnitude of the effect.',
+   people:['Unknown (automatic protocol execution)'],
+   rpg:{e:['The Last Echo of Inflation'],j:['Fourth Halving Witness'],s:['3.125 BTC Reward','Approach to Supply Limit']}},
+
+  {y:2024,cat:'bubble',imp:5,name:'Bitcoin Breaks $100,000',
+   summary:"Following Trump's election victory, BTC surges and breaks $100,000 for the first time in history in December 2024.",
+   bg:'ETF-driven institutional inflows, halving effects, and expectations of a crypto-friendly Trump administration created a triple tailwind.',
+   result:'BTC hit $103,000+, setting a new all-time high. Total crypto market cap surpassed $2T again.',
+   impact:'"Six-figure Bitcoin" was a historic psychological milestone. Politics and regulatory sentiment now directly drive crypto pricing.',
+   lesson:'Political tailwinds combined with institutional infrastructure can propel price to entirely new levels.',
+   people:['Donald Trump (President-elect)','BlackRock et al.','MicroStrategy'],
+   rpg:{e:['The Six-Figure Wall','Fear of All-Time High Heights'],j:['The Legendary HODLer','100K Summit Climber'],s:['$100K Breach','Political Tailwind Leverage']}},
+
+  {y:2024,cat:'regulation',imp:4,name:"Trump Administration's Pro-Crypto Stance",
+   summary:"Trump declares himself the 'crypto president.' SEC Chair Gary Gensler resigns. A new regulatory era begins.",
+   bg:'Trump actively courted the crypto community during the 2024 election, pledging regulatory relief and a strategic Bitcoin reserve.',
+   result:'Gensler resigned. The incoming SEC Chair signaled a crypto-friendly posture. Major regulatory clarity appeared on the horizon.',
+   impact:'The full merger of politics and crypto markets. US regulatory clarity may accelerate dramatically.',
+   lesson:"A nation's political posture can move the entire crypto market. Crypto became a legitimate electoral constituency.",
+   people:['Donald Trump','Paul Atkins (SEC Chair nominee)','Gary Gensler (resigned)'],
+   rpg:{e:['The Old Regulatory Guard'],j:['Political Ally','Deregulation Champion'],s:['Executive Order','SEC Personnel Reset']}},
+];
+
+let curCat='all';
+let openCard=null;
+
+function setF(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('.f-btn').forEach(b=>{
+    b.className='f-btn';
+    if(b.dataset.cat===cat) b.classList.add('on-'+cat);
+  });
+  applyFilters();
+}
+
+function applyFilters(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const rows=DB.filter(d=>{
+    if(curCat!=='all'&&d.cat!==curCat)return false;
+    if(q&&!d.name.toLowerCase().includes(q)&&!d.summary.toLowerCase().includes(q))return false;
+    return true;
+  });
+  document.getElementById('count-badge').textContent=rows.length+' events';
+  renderTimeline(rows);
+}
+
+function renderTimeline(rows){
+  const yc=document.getElementById('year-col');
+  const ec=document.getElementById('events-col');
+  yc.innerHTML='';ec.innerHTML='';
+  if(!rows.length){
+    document.getElementById('empty').style.display='block';
+    return;
+  }
+  document.getElementById('empty').style.display='none';
+  const byYear={};
+  rows.forEach(d=>{if(!byYear[d.y])byYear[d.y]=[];byYear[d.y].push(d);});
+  let lastEra='';
+  Object.keys(byYear).sort((a,b)=>a-b).forEach(y=>{
+    const era=ERAS[y]||'';
+    const yd=document.createElement('div');
+    yd.className='year-anchor';
+    yd.id='y'+y;
+    yd.textContent=y;
+    yc.appendChild(yd);
+    const ew=document.createElement('div');
+    ew.className='year-block';
+    if(era!==lastEra){
+      lastEra=era;
+      const el=document.createElement('div');
+      el.className='era-label';
+      el.textContent=era;
+      ew.appendChild(el);
+    }
+    byYear[y].forEach(d=>{
+      const card=document.createElement('div');
+      card.className='event-card';
+      const col=CAT_COLOR[d.cat]||'#888';
+      const impH=[5,4,3,2,1].map(n=>`<div class="imp-seg${n<=d.imp?' lit':''}"></div>`).join('');
+      const catLabel={tech:'Technology',collapse:'Collapse',bubble:'Bubble',regulation:'Regulation',culture:'Culture'}[d.cat]||d.cat;
+      const rpgH=`<div class="rpg-panel"><div class="rpg-head">RPG Elements — Enemies / Classes / Skills</div><div class="rpg-chips">${d.rpg.e.map(x=>`<span class="rpg-chip e"><span class="chip-prefix">👾</span>${x}</span>`).join('')}${d.rpg.j.map(x=>`<span class="rpg-chip j"><span class="chip-prefix">⚔</span>${x}</span>`).join('')}${d.rpg.s.map(x=>`<span class="rpg-chip s"><span class="chip-prefix">✦</span>${x}</span>`).join('')}</div></div>`;
+      const ppl=d.people.map(p=>`<span class="person-tag">${p}</span>`).join('');
+      card.innerHTML=`
+        <div class="card-header">
+          <div class="card-left">
+            <div class="card-row1"><div class="cat-pip" style="background:${col}"></div><span class="cat-label-small">${catLabel}</span></div>
+            <div class="event-title">${d.name}</div>
+            <div class="event-summary">${d.summary}</div>
+          </div>
+          <div class="card-right"><div class="imp-bar">${impH}</div><div class="chevron">▾</div></div>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="d-block"><div class="d-label">Background — Why it happened</div><div class="d-val">${d.bg}</div></div>
+            <div class="d-block"><div class="d-label">Result — What changed</div><div class="d-val">${d.result}</div></div>
+            <div class="d-block"><div class="d-label">Long-term Impact</div><div class="d-val">${d.impact}</div></div>
+            <div class="d-block"><div class="d-label">Key Lesson</div><div class="d-val"><b>${d.lesson}</b></div></div>
+            <div class="d-block"><div class="d-label">Key People & Organizations</div><div class="d-val"><div class="people-row">${ppl}</div></div></div>
+          </div>
+          ${rpgH}
+        </div>`;
+      card.addEventListener('click',()=>{
+        if(card.classList.contains('open')){card.classList.remove('open');}
+        else{if(openCard)openCard.classList.remove('open');card.classList.add('open');openCard=card;}
+      });
+      ew.appendChild(card);
+    });
+    ec.appendChild(ew);
+  });
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.event-card').forEach((c,i)=>{c.style.transitionDelay=(i%4)*.04+'s';obs.observe(c);});
+}
+
+function copyLink(){
+  navigator.clipboard.writeText(location.href).then(()=>{
+    const t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2000);
+  });
+}
+
+renderTimeline(DB);
+</script>
+</body>
+</html>
